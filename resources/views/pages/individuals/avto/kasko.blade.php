@@ -2,6 +2,7 @@
 
 @section('content')
     <main>
-
+        <h3>КАСКО</h3>
+        <p>/resources/pages/individuals/avto/kasko.blade.php</p>
     </main>
 @endsection
