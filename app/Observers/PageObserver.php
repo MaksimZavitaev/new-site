@@ -13,6 +13,7 @@ class PageObserver
      * @param Page $page
      *
      * @return void
+     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      */
     public function created(Page $page)
     {
@@ -25,7 +26,19 @@ class PageObserver
 
         $this->createParentDirectory($page, $pages_path);
 
-        File::copy($stub_file, $pages_path . $link . $ext);
+        $stub = File::get($stub_file);
+
+        $replace = [
+            'DummyPageName' => $page->name,
+        ];
+
+        File::put(
+            $pages_path . $link . $ext,
+            str_replace(
+                array_keys($replace), array_values($replace),
+                $stub
+            )
+        );
     }
 
     /**

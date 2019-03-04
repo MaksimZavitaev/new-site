@@ -2,6 +2,6 @@
 
 @section('content')
     <main>
-
+        <h3>DummyPageName</h3>
     </main>
 @endsection
