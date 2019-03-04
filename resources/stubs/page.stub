@@ -3,5 +3,6 @@
 @section('content')
     <main>
         <h3>DummyPageName</h3>
+        <p>DummyPageViewPath<p>
     </main>
 @endsection

@@ -27,13 +27,15 @@ class PageObserver
         $this->createParentDirectory($page, $pages_path);
 
         $stub = File::get($stub_file);
+        $viewPath = $pages_path . $link . $ext;
 
         $replace = [
             'DummyPageName' => $page->name,
+            'DummyPageViewPath' => str_replace([base_path(), '\\'], ['', '/'], $viewPath),
         ];
 
         File::put(
-            $pages_path . $link . $ext,
+            $viewPath,
             str_replace(
                 array_keys($replace), array_values($replace),
                 $stub
