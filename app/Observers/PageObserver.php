@@ -22,12 +22,12 @@ class PageObserver
         $stub_file = resource_path('stubs/page.stub');
         $ext = '.blade.php';
 
-        $link = $attributes['link'] === '/' ? '/index' : $attributes['link'];
+        $fileName = $attributes['link'] === '/' ? '/home' : $attributes['link'];
 
         $this->createParentDirectory($page, $pages_path);
 
         $stub = File::get($stub_file);
-        $viewPath = $pages_path . $link . $ext;
+        $viewPath = $pages_path . $fileName . $ext;
 
         $replace = [
             'DummyPageName' => $page->name,
