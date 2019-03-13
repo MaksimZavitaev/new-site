@@ -63,7 +63,7 @@
             <div class="form-group">
                 {!! Form::label('seo[alt]', 'Alt (по умолчанию)') !!}
                 {!! Form::text('seo[alt]', null, [
-                'class' => 'form-control' . ($errors->has('seo[alt]') ? ' is-invalid' : '')) !!}
+                'class' => 'form-control' . ($errors->has('seo[alt]') ? ' is-invalid' : '')]) !!}
             </div>
         </div>
         <div class="col-md-12">
