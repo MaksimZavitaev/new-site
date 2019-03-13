@@ -47,27 +47,23 @@
                 {!! Form::label('seo[keywords]', 'Keywords') !!}
                 {!! Form::text('seo[keywords]', null, [
                 'class' => 'form-control' . ($errors->has('seo[keywords]') ? ' is-invalid' : ''),
-                'placeholder' => 'Укажите через запятую',
-                'required']) !!}
+                'placeholder' => 'Укажите через запятую']) !!}
             </div>
             <div class="form-group">
                 {!! Form::label('seo[description]', 'Description') !!}
                 {!! Form::textarea('seo[description]', null, [
                 'rows' => 2,
-                'class' => 'form-control' . ($errors->has('seo[description]') ? ' is-invalid' : ''),
-                'required']) !!}
+                'class' => 'form-control' . ($errors->has('seo[description]') ? ' is-invalid' : '')]) !!}
             </div>
             <div class="form-group">
                 {!! Form::label('seo[h1]', 'H1') !!}
                 {!! Form::text('seo[h1]', null, [
-                'class' => 'form-control' . ($errors->has('seo[h1]') ? ' is-invalid' : ''),
-                'required']) !!}
+                'class' => 'form-control' . ($errors->has('seo[h1]') ? ' is-invalid' : '')]) !!}
             </div>
             <div class="form-group">
                 {!! Form::label('seo[alt]', 'Alt (по умолчанию)') !!}
                 {!! Form::text('seo[alt]', null, [
-                'class' => 'form-control' . ($errors->has('seo[alt]') ? ' is-invalid' : ''),
-                'required']) !!}
+                'class' => 'form-control' . ($errors->has('seo[alt]') ? ' is-invalid' : '')) !!}
             </div>
         </div>
         <div class="col-md-12">
