@@ -31,13 +31,18 @@ class PageController extends Controller
                 })
                 ->filter(function ($item) use ($pid) {
                     return ($item->id === $pid) || ($item->parent_id === $pid);
+                })->mapToGroups(function ($item, $key) {
+                    $group = $item->childs_count ? 'folders' : 'items';
+                    return [$group => $item];
                 });
         } elseif ($search === null) {
-            $pages = Page::with('parent')->paginate($items_per_page);
-            $pages->withPath($query_string);
+            $pages['items'] = Page::with('parent')->orderBy('name')->paginate($items_per_page);
+            $pages['items']->withPath($query_string);
+            $pages = collect($pages);
         } else {
-            $pages = Page::with('parent')->where('name', 'LIKE', "%$search%")->paginate($items_per_page);
-            $pages->withPath($query_string);
+            $pages['items'] = Page::with('parent')->where('name', 'LIKE', "%$search%")->orderBy('name')->paginate($items_per_page);
+            $pages['items']->withPath($query_string);
+            $pages = collect($pages);
         }
 
         return view('admin.pages.index', compact('pages'));
