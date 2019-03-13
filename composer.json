@@ -17,7 +17,6 @@
         "laravel/tinker": "^1.0",
         "laravelcollective/html": "^5.7",
         "league/flysystem": "^1.0",
-        "nanigans/single-table-inheritance": "^0.8.3",
         "spatie/laravel-permission": "^2.30"
     },
     "require-dev": {
