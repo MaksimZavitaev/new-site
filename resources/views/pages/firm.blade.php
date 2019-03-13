@@ -3,6 +3,6 @@
 @section('content')
     <main>
         <h3>Страхование юридических лиц</h3>
-        <p>/resources/pages/firm.blade.php</p>
+        <p>/resources/views/pages/firm.blade.php<p>
     </main>
 @endsection

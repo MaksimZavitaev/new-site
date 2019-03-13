@@ -3,6 +3,6 @@
 @section('content')
     <main>
         <h3>Страховой случай</h3>
-        <p>/resources/pages/insurance.blade.php</p>
+        <p>/resources/views/pages/insurance.blade.php<p>
     </main>
 @endsection
