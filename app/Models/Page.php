@@ -56,8 +56,6 @@ class Page extends Model
 {
     use SoftDeletesWithDeleted;
 
-//    protected $connection = 'mongodb';
-
     protected $attributes = [
         'active' => true,
         'parent_id' => null,

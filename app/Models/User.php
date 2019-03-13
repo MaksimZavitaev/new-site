@@ -12,7 +12,6 @@ use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
-use Jenssegers\Mongodb\Eloquent\HybridRelations;
 use Spatie\Permission\Traits\HasRoles;
 
 /**
@@ -49,7 +48,7 @@ class User extends Model implements
     AuthorizableContract,
     CanResetPasswordContract
 {
-    use Authenticatable, Authorizable, CanResetPassword, MustVerifyEmail, Notifiable, HasRoles, HybridRelations;
+    use Authenticatable, Authorizable, CanResetPassword, MustVerifyEmail, Notifiable, HasRoles;
 
     /**
      * The attributes that are mass assignable.

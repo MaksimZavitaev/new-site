@@ -165,7 +165,6 @@ return [
         /*
          * Package Service Providers...
          */
-        \Jenssegers\Mongodb\MongodbServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
 
