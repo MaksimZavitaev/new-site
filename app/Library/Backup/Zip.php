@@ -40,13 +40,24 @@ class Zip
         }
 
         $this->closeIfOpened();
+        return $this;
+    }
 
+    public function sendToDestinations()
+    {
         $content = file_get_contents($this->archivePath);
 
         foreach ($this->config['destination']['disks'] as $disk) {
             $storage = \Storage::disk($disk);
             $storage->put('backups/' . $this->archiveName, $content);
         }
+
+        return $this;
+    }
+
+    public function delete()
+    {
+        unlink($this->archivePath);
     }
 
     public function unpack()

@@ -46,7 +46,10 @@ class BackupCreateCommand extends Command
 
         $this->info('Creating zip archive and moving to destinations');
         $zip = app(Zip::class);
-        $zip->create();
+        $zip
+            ->create()
+            ->sendToDestinations()
+            ->delete();
 
         $this->output->success('Creating backup is successful');
     }
