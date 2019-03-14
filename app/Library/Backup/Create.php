@@ -18,7 +18,7 @@ class Create
         $temporaryPath = $this->config['temporaryDirectory'];
         foreach ($databases as $db) {
             $config = config("database.connections.${db}");
-            exec("mysqldump --user={$config['username']} --password={$config['password']} --host={$config['host']} {$config['database']} > {$temporaryPath}{$db}-dump.sql");
+            exec("mysqldump --user={$config['username']} --password={$config['password']} --host={$config['host']} {$config['database']} > {$temporaryPath}{$db}.sql");
         }
     }
 }

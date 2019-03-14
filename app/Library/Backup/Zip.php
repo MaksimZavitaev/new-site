@@ -4,9 +4,6 @@
 namespace App\Library\Backup;
 
 
-use Illuminate\Filesystem\Filesystem;
-use ZipArchive;
-
 class Zip
 {
     protected $config;
@@ -20,14 +17,13 @@ class Zip
         $this->config = config('backup');
         $this->zip = new \ZipArchive;
 
-        $now = now();
-        $this->archiveName = $now->format('Y-m-d_H_i') . '.zip';
+        $this->archiveName = now()->format('Y-m-d_H_i') . '.zip';
         $this->archivePath = $this->config['temporaryDirectory'] . $this->archiveName;
     }
 
     public function open()
     {
-        $this->opened = $this->zip->open($this->archivePath, ZipArchive::CREATE);
+        $this->opened = $this->zip->open($this->archivePath, \ZipArchive::CREATE);
         return $this->zip;
     }
 
@@ -35,7 +31,7 @@ class Zip
     {
         $this->open();
         foreach ($this->config['source']['databases'] as $database) {
-            $filename = $database . '-dump.sql';
+            $filename = $database . '.sql';
             $this->zip->addFile($this->config['temporaryDirectory'] . $filename, $filename);
         }
 
@@ -62,7 +58,6 @@ class Zip
 
     public function unpack()
     {
-        $fs = new Filesystem;
         $storage = \Storage::disk($this->config['destination']['disks'][0]);
         $files = collect($storage->files('backups'));
         $file = $storage->path($files->last());
