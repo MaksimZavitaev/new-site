@@ -4,6 +4,9 @@
 namespace App\Library\Backup;
 
 
+use Illuminate\Filesystem\Filesystem;
+use ZipArchive;
+
 class Zip
 {
     protected $config;
@@ -19,13 +22,18 @@ class Zip
 
         $now = now();
         $this->archiveName = $now->format('Y-m-d_H_i') . '.zip';
-        $this->archivePath = $this->config['temporaryDirectory'] .  $this->archiveName;
+        $this->archivePath = $this->config['temporaryDirectory'] . $this->archiveName;
+    }
+
+    public function open()
+    {
+        $this->opened = $this->zip->open($this->archivePath, ZipArchive::CREATE);
+        return $this->zip;
     }
 
     public function create()
     {
-
-        $this->opened = $this->zip->open($this->archivePath, \ZipArchive::CREATE);
+        $this->open();
         foreach ($this->config['source']['databases'] as $database) {
             $filename = $database . '-dump.sql';
             $this->zip->addFile($this->config['temporaryDirectory'] . $filename, $filename);
@@ -41,6 +49,21 @@ class Zip
         }
     }
 
+    public function unpack()
+    {
+        $fs = new Filesystem;
+        $storage = \Storage::disk($this->config['destination']['disks'][0]);
+        $files = collect($storage->files('backups'));
+        $file = $storage->path($files->last());
+        $this->archivePath = $file;
+        $now = now()->format('Y-m-d_H_i');
+        $dest = $this->config['temporaryDirectory'] . $now . '/';
+        $this
+            ->open()
+            ->extractTo($dest);
+        return $dest;
+    }
+
     public function closeIfOpened()
     {
         if ($this->opened) {
@@ -48,11 +71,5 @@ class Zip
             $this->opened = false;
         }
         return $this;
-    }
-
-    public function __destruct()
-    {
-        $this->closeIfOpened();
-        unlink($this->archivePath);
     }
 }
