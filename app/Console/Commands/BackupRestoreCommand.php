@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\Library\Backup\Restore;
 use App\Library\Backup\Zip;
 use Illuminate\Console\Command;
+use Illuminate\Filesystem\Filesystem;
 
 class BackupRestoreCommand extends Command
 {
@@ -45,5 +46,7 @@ class BackupRestoreCommand extends Command
         $restore
             ->setFrom($dest)
             ->run();
+        $fs = new Filesystem;
+        $fs->deleteDirectory($dest);
     }
 }
