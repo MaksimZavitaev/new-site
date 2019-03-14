@@ -40,6 +40,14 @@ class BackupRestoreCommand extends Command
      */
     public function handle()
     {
+        if (app()->environment('production')) {
+            $answer = $this->ask('Вы действительно хотите развернуть бекап? (yes|no)', false);
+            if (!$answer || strtolower($answer) !== 'yes') {
+                $this->info('Вы отменили развертывание бекапа');
+                return;
+            }
+        }
+
         $restore = app(Restore::class);
         $zip = app(Zip::class);
         $dest = $zip->unpack();
