@@ -40,10 +40,9 @@ class BackupDatabase extends Command
     {
         $databases = config('backup.source.databases');
         $temporaryPath = config('backup.temporaryDirectory');
-        $now = Carbon::now();
         foreach ($databases as $db) {
             $config = config("database.connections.${db}");
-            exec("mysqldump --user={$config['username']} --password={$config['password']} --host={$config['host']} {$config['database']} > {$temporaryPath}{$now->format('Y-m-d_H_i')}.sql");
+            exec("mysqldump --user={$config['username']} --password={$config['password']} --host={$config['host']} {$config['database']} > {$temporaryPath}{$db}-dump.sql");
         }
     }
 }
