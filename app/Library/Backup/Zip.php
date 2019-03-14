@@ -35,12 +35,20 @@ class Zip
             $this->zip->addFile($this->config['temporaryDirectory'] . $filename, $filename);
         }
 
-        $this->closeIfOpened();
+        return $this;
+    }
+
+    public function addFiles($files)
+    {
+        foreach ($files as $file) {
+            $this->zip->addFile(base_path() . $file, ltrim($file, DIRECTORY_SEPARATOR));
+        }
         return $this;
     }
 
     public function sendToDestinations()
     {
+        $this->closeIfOpened();
         $content = file_get_contents($this->archivePath);
 
         foreach ($this->config['destination']['disks'] as $disk) {
@@ -53,6 +61,7 @@ class Zip
 
     public function delete()
     {
+        $this->closeIfOpened();
         unlink($this->archivePath);
     }
 

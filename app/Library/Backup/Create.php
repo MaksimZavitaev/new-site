@@ -21,4 +21,20 @@ class Create
             exec("mysqldump --user={$config['username']} --password={$config['password']} --host={$config['host']} {$config['database']} > {$temporaryPath}{$db}.sql");
         }
     }
+
+    public function collectFiles()
+    {
+        $disks = $this->config['source']['disks'];
+        $files = collect();
+        foreach ($disks as $disk) {
+            $storage = \Storage::disk($disk);
+            $items = collect($storage->allFiles())
+                ->map(function ($file) use ($storage) {
+                    return str_replace(base_path(), '', $storage->path($file));
+                });
+            $files = $files->merge($items);
+        }
+
+        return $files;
+    }
 }

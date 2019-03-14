@@ -43,11 +43,13 @@ class BackupCreateCommand extends Command
         $create = app(Create::class);
         $this->info('Start dumping databases');
         $create->dumpDatabase();
+        $files = $create->collectFiles();
 
         $this->info('Creating zip archive and moving to destinations');
         $zip = app(Zip::class);
         $zip
             ->create()
+            ->addFiles($files)
             ->sendToDestinations()
             ->delete();
 
