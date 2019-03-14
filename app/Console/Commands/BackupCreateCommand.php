@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Library\Backup\Create;
+use App\Library\Backup\Zip;
 use Illuminate\Console\Command;
 
 class BackupCreateCommand extends Command
@@ -42,6 +43,11 @@ class BackupCreateCommand extends Command
         $create = app(Create::class);
         $this->info('Start dumping databases');
         $create->dumpDatabase();
+
+        $this->info('Creating zip archive and moving to destinations');
+        $zip = app(Zip::class);
+        $zip->create();
+
         $this->output->success('Creating backup is successful');
     }
 }
