@@ -17,7 +17,7 @@ class Zip
         $this->config = config('backup');
         $this->zip = new \ZipArchive;
 
-        $this->archiveName = now()->format('Y-m-d_H_i') . '.zip';
+        $this->archiveName = now()->format($this->config['format']) . '.zip';
         $this->archivePath = $this->config['temporaryDirectory'] . $this->archiveName;
     }
 
@@ -62,7 +62,7 @@ class Zip
         $files = collect($storage->files('backups'));
         $file = $storage->path($files->last());
         $this->archivePath = $file;
-        $now = now()->format('Y-m-d_H_i');
+        $now = now()->format($this->config['format']);
         $dest = $this->config['temporaryDirectory'] . $now . '/';
         $this
             ->open()
