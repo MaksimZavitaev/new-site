@@ -27,7 +27,7 @@ class Restore
         $fs = new Filesystem();
         $files = collect($fs->files($this->from));
         foreach ($this->config['source']['databases'] as $db) {
-            $file = $this->from . $db . '-dump.sql';
+            $file = $this->from . $db . '.sql';
             if ($fs->exists($file)) {
                 $config = config("database.connections.${db}");
                 exec("mysql --user={$config['username']} --password={$config['password']} --host={$config['host']} {$config['database']} < $file");
