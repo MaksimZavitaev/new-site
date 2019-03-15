@@ -24,22 +24,12 @@ class BackupRestoreCommand extends Command
     protected $description = 'Restore to latest backup';
 
     /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
-    /**
      * Execute the console command.
-     *
-     * @return mixed
      */
     public function handle()
     {
+        $this->call('down');
+        $this->clear();
         if (app()->environment('production')) {
             $answer = $this->ask('Вы действительно хотите развернуть бекап? (yes|no)', false);
             if (!$answer || strtolower($answer) !== 'yes') {
@@ -56,5 +46,16 @@ class BackupRestoreCommand extends Command
             ->run();
         $fs = new Filesystem;
         $fs->deleteDirectory($dest);
+        $this->clear();
+        $this->call('up');
+    }
+
+    private function clear()
+    {
+        $this->call('cache:clear');
+        $this->call('route:clear');
+//        $this->call('route:cache');
+        $this->call('config:clear');
+//        $this->call('config:cache');
     }
 }
