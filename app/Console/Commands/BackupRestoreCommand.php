@@ -41,9 +41,11 @@ class BackupRestoreCommand extends Command
         $restore = app(Restore::class);
         $zip = app(Zip::class);
         $dest = $zip->unpack();
-        $restore
-            ->setFrom($dest)
-            ->run();
+        $restore->setFrom($dest);
+        foreach ($restore->run() as $data) {
+            $this->info($data);
+        }
+
         $fs = new Filesystem;
         $fs->deleteDirectory($dest);
         $this->clear();
