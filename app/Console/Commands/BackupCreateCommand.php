@@ -42,7 +42,9 @@ class BackupCreateCommand extends Command
         $this->info('Start creating backup');
         $create = app(Create::class);
         $this->info('Start dumping databases');
-        $create->dumpDatabase();
+        foreach ($create->dumpDatabase() as $data) {
+            $this->info($data);
+        }
         $files = $create->collectFiles();
 
         $this->info('Creating zip archive and moving to destinations');

@@ -3,6 +3,8 @@
 
 namespace App\Library\Backup;
 
+use Symfony\Component\Process\Process;
+
 class Create
 {
     protected $config;
@@ -18,7 +20,18 @@ class Create
         $temporaryPath = $this->config['temporaryDirectory'];
         foreach ($databases as $db) {
             $config = config("database.connections.${db}");
-            exec("mysqldump --user={$config['username']} --password={$config['password']} --host={$config['host']} {$config['database']} > {$temporaryPath}{$db}.sql");
+            $process = new Process(sprintf(
+                'mysqldump --user=%s --password=%s --host=%s -v %s > %s',
+                $config['username'],
+                $config['password'],
+                $config['host'],
+                $config['database'],
+                "{$temporaryPath}{$db}.sql"
+            ));
+            $process->start();
+            foreach ($process as $type => $data) {
+                yield $data;
+            }
         }
     }
 
