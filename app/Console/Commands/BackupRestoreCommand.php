@@ -28,8 +28,6 @@ class BackupRestoreCommand extends Command
      */
     public function handle()
     {
-        $this->call('down');
-        $this->clear();
         if (app()->environment('production')) {
             $answer = $this->ask('Вы действительно хотите развернуть бекап? (yes|no)', false);
             if (!$answer || strtolower($answer) !== 'yes') {
@@ -37,6 +35,8 @@ class BackupRestoreCommand extends Command
                 return;
             }
         }
+        $this->call('down');
+        $this->clear();
 
         $restore = app(Restore::class);
         $zip = app(Zip::class);
