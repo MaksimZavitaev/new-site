@@ -102,6 +102,29 @@
                             </li>
                         </ul>
                     </li>
+                    <li class="treeview {{ request()->route()->named('admin.backups.*') }}">
+                        <a href="#">
+                            <i class="fa fa-database"></i>
+                            <span>Резервные копии</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li class="{{ request()->route()->named('admin.backups.index') ? 'active' : '' }}">
+                                <a href="{{ route('admin.backups.index') }}">
+                                    <i class="fa fa-circle-o"></i>
+                                    Список
+                                </a>
+                            </li>
+                            <li class="{{ request()->route()->named('admin.backups.create') ? 'active' : '' }}">
+                                <a href="{{ route('admin.backups.index') }}">
+                                    <i class="fa fa-circle-o text-green"></i>
+                                    Создать
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
                     @endhasrole
                 </ul>
                 <!-- /.sidebar-menu -->

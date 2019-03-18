@@ -22,6 +22,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('forms', 'FormController');
     Route::resource('applications', 'ApplicationController');
 
+    Route::group(['prefix' => 'backups', 'as' => 'backups.'], function () {
+        Route::get('', 'BackupController@index')->name('index');
+        Route::get('restore', 'BackupController@restore')->name('restore');
+    });
+
     Route::prefix('pages/{page}')->group(function () {
         Route::resource('variables', 'PageVariableController')->only(['index', 'show', 'store', 'update', 'destroy']);
     });

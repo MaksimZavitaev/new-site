@@ -68,7 +68,9 @@ class Zip
     public function unpack()
     {
         $storage = \Storage::disk($this->config['destination']['disks'][0]);
-        if (!$storage->exists('backups/' . $this->archiveName)) {
+        if ($storage->exists('backups/' . $this->archiveName)) {
+            $this->archivePath = $storage->path('backups/' . $this->archiveName);
+        } else {
             $files = collect($storage->files('backups'));
             $file = $storage->path($files->last());
             $this->archivePath = $file;

@@ -59,7 +59,7 @@ class Restore
             if (!$fs->exists($path)) {
                 $fs->makeDirectory($path);
             }
-            $fs->copy($file->getRealPath(), $dest);
+            $fs->copy($file->getRealPath(), base_path($dest));
             yield "Copying file {$dest}";
             $fs->delete($file);
         }
