@@ -51,6 +51,22 @@
                         $buttons.toggleClass('disabled');
                     });
             });
+
+            $('.destroy').click(function (e) {
+                var $t = $(e.currentTarget);
+                var $buttons = $('.fa-repeat, .fa-remove').parent();
+
+                if (confirm('Delete backup?')) {
+                    $buttons.toggleClass('disabled');
+                    axios.get('/admin/backups/destroy', {params: {name: $t.parent().data('name')}})
+                        .then(function (res) {
+                            $buttons.toggleClass('disabled');
+                            if (res.data.status === 'ok') {
+                                $t.parents('.list-group-item').remove();
+                            }
+                        });
+                }
+            });
         });
     </script>
 @endpush

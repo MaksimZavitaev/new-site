@@ -31,4 +31,17 @@ class BackupController extends Controller
 
         return json_encode(['code' => $code]);
     }
+
+    public function destroy(Request $request)
+    {
+        $name = $request->get('name');
+        $path = storage_path("app/backups/{$name}");
+        if (\File::isFile($path)) {
+            if (\File::delete($path)) {
+                return response()->json(['status' => 'ok']);
+            }
+            return response()->json(['status' => 'error', 'message' => 'File not deleted']);
+        }
+        return response()->json(['status' => 'error', 'message' => 'File not found']);
+    }
 }
