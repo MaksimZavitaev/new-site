@@ -20,6 +20,17 @@ class BackupController extends Controller
         return view('admin.backups.index', compact('files'));
     }
 
+    public function create()
+    {
+        try {
+            $code = \Artisan::call('backup:create');
+        } catch (\Exception $exception) {
+            $code = 1;
+        }
+
+        return response()->json(['code' => $code]);
+    }
+
     public function restore(Request $request)
     {
         $name = $request->get('name');

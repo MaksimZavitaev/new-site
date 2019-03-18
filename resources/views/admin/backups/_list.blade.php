@@ -6,6 +6,7 @@
         <div class="col-md-4">
             <div class="box box-warning">
                 <div class="box-body">
+                    <button id="createButton" class="btn btn-xs btn-block btn-success">Создать</button>
                     <div class="list-group list-group-unbordered">
                         @foreach($files as $file)
                             @php /** @var SplFileInfo $file */ @endphp
@@ -66,6 +67,16 @@
                             }
                         });
                 }
+            });
+
+            $('#createButton').click(function (e) {
+                var $t = $(e.currentTarget);
+                $t.toggleClass('disabled');
+                $t.html('<i class="fa fa-spinner fa-spin"></i>');
+                axios.get('/admin/backups/create')
+                    .then(function (res) {
+                        window.location.reload();
+                    });
             });
         });
     </script>

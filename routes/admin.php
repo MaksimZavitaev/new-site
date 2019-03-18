@@ -24,6 +24,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::group(['prefix' => 'backups', 'as' => 'backups.'], function () {
         Route::get('', 'BackupController@index')->name('index');
+        Route::get('create', 'BackupController@create')->name('create');
         Route::get('restore', 'BackupController@restore')->name('restore');
         Route::get('destroy', 'BackupController@destroy')->name('destroy');
     });
