@@ -22,13 +22,15 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('forms', 'FormController');
     Route::resource('applications', 'ApplicationController');
 
-    Route::group(['prefix' => 'backups', 'as' => 'backups.'], function () {
-        Route::get('', 'BackupController@index')->name('index');
-        Route::get('create', 'BackupController@create')->name('create');
-        Route::get('restore', 'BackupController@restore')->name('restore');
-        Route::get('destroy', 'BackupController@destroy')->name('destroy');
-        Route::post('upload', 'BackupController@upload')->name('upload');
-    });
+    if (env('APP_ENV') !== 'production') {
+        Route::group(['prefix' => 'backups', 'as' => 'backups.'], function () {
+            Route::get('', 'BackupController@index')->name('index');
+            Route::get('create', 'BackupController@create')->name('create');
+            Route::get('restore', 'BackupController@restore')->name('restore');
+            Route::get('destroy', 'BackupController@destroy')->name('destroy');
+            Route::post('upload', 'BackupController@upload')->name('upload');
+        });
+    }
 
     Route::prefix('pages/{page}')->group(function () {
         Route::resource('variables', 'PageVariableController')->only(['index', 'show', 'store', 'update', 'destroy']);

@@ -23,7 +23,7 @@
                 <!-- Navbar Right Menu -->
                 <div class="navbar-custom-menu">
                     <ul class="nav navbar-nav">
-                    <!-- Control Sidebar Toggle Button -->
+                        <!-- Control Sidebar Toggle Button -->
                         <li>
                             <a class="dropdown-item" href="{{ route('admin.logout') }}"
                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Выйти
@@ -102,12 +102,14 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="{{ request()->route()->named('admin.backups.*') ? 'active' : '' }}">
-                        <a href="{{ route('admin.backups.index') }}">
-                            <i class="fa fa-database"></i>
-                            <span>Резервные копии</span>
-                        </a>
-                    </li>
+                    @if (! app()->environment('production'))
+                        <li class="{{ request()->route()->named('admin.backups.*') ? 'active' : '' }}">
+                            <a href="{{ route('admin.backups.index') }}">
+                                <i class="fa fa-database"></i>
+                                <span>Резервные копии</span>
+                            </a>
+                        </li>
+                    @endif
                     @endhasrole
                 </ul>
                 <!-- /.sidebar-menu -->
