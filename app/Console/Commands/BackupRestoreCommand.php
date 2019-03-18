@@ -28,6 +28,7 @@ class BackupRestoreCommand extends Command
      */
     public function handle()
     {
+        $name = null;
         if ($argName = $this->argument('name')) {
             $ext = '.zip';
             $name = strpos($argName, $ext) ? $argName : $argName . $ext;
@@ -49,7 +50,7 @@ class BackupRestoreCommand extends Command
         $this->clear();
 
         $restore = app(Restore::class);
-        $zip = app(Zip::class);
+        $zip = app(Zip::class, ['archiveName' => $name]);
         $dest = $zip->unpack();
         $restore->setFrom($dest);
         foreach ($restore->run() as $data) {
