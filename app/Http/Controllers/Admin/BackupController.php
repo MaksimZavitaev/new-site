@@ -55,4 +55,19 @@ class BackupController extends Controller
         }
         return response()->json(['status' => 'error', 'message' => 'File not found']);
     }
+
+    public function upload(Request $request)
+    {
+        $file = $request->file('archive');
+        $path = $file->storeAs('backups', $file->getClientOriginalName(), 'local');
+        $storage = \Storage::disk('local');
+
+        $url = $storage->url($path);
+
+        return [
+            'name' => $file->getClientOriginalName(),
+            'path' => str_replace(env('APP_URL'), '', $url),
+            'size' => $storage->size($path),
+        ];
+    }
 }

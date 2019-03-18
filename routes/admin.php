@@ -27,6 +27,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('create', 'BackupController@create')->name('create');
         Route::get('restore', 'BackupController@restore')->name('restore');
         Route::get('destroy', 'BackupController@destroy')->name('destroy');
+        Route::post('upload', 'BackupController@upload')->name('upload');
     });
 
     Route::prefix('pages/{page}')->group(function () {
