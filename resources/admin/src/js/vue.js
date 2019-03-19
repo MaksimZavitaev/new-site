@@ -23,3 +23,5 @@ const app = new Vue({
         BreadcrumbsList
     }
 });
+
+window.app = app;
