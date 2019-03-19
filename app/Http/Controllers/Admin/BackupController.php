@@ -75,4 +75,9 @@ class BackupController extends Controller
             'size' => $storage->size($path),
         ];
     }
+
+    public function download(Request $request)
+    {
+
+    }
 }
