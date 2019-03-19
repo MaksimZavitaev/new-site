@@ -10,8 +10,13 @@ class BackupController extends Controller
 {
     public function index()
     {
+        $path = storage_path('app/backups/');
+        if (!\File::isDirectory($path)) {
+            \File::makeDirectory($path);
+        }
+
         $files = Finder::create()
-            ->in(storage_path('app/backups/'))
+            ->in($path)
             ->files()
             ->name('*.zip')
             ->sortByName()
