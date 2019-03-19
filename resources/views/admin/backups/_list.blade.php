@@ -53,6 +53,7 @@
                     .then(function (res) {
                         $icon.toggleClass('fa-spin');
                         $buttons.toggleClass('disabled');
+                        app.$notify({group: 'app', type: 'success', text: 'Восстановление успешно выполнено'});
                     });
             });
 
@@ -67,6 +68,7 @@
                             $buttons.toggleClass('disabled');
                             if (res.data.status === 'ok') {
                                 $t.parents('.list-group-item').remove();
+                                app.$notify({group: 'app', type: 'success', text: 'Успешно удалено'});
                             }
                         });
                 }
@@ -78,6 +80,7 @@
                 $t.html('<i class="fa fa-spinner fa-spin"></i>');
                 axios.get('/admin/backups/create')
                     .then(function (res) {
+                        app.$notify({group: 'app', type: 'success', text: 'Успешно создано'});
                         window.location.reload();
                     });
             });
@@ -101,6 +104,7 @@
                             'Content-Type': 'multipart/form-data'
                         }
                     }).then(function (e) {
+                        app.$notify({group: 'app', type: 'success', text: 'Успешно добавлено'});
                         window.location.reload();
                     });
                 }
