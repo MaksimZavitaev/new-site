@@ -18,6 +18,13 @@
                                 {{ $file->getBasename('.zip') }}
                                 <small>({{ bytesToHuman($file->getSize()) }})</small>
                                 <div class="btn-group btn-group-xs pull-right" data-name="{{$file->getBasename()}}">
+                                    <a href="{{ route('admin.backups.download', ['name' => $file->getBasename()]) }}"
+                                       class="btn btn-success"
+                                       type="button"
+                                       data-toggle="tooltip"
+                                       title="Скачать">
+                                        <i class="fa fa-download"></i>
+                                    </a>
                                     <button class="btn btn-warning restore"
                                             data-toggle="tooltip"
                                             title="Восстановить">
