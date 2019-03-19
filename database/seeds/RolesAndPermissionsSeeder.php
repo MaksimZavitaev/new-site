@@ -27,7 +27,7 @@ class RolesAndPermissionsSeeder extends Seeder
         Role::create(['name' => 'moderator'])
             ->givePermissionTo(['publish pages', 'unpublish pages']);
 
-        Role::create(['name' => 'super-admin'])
+        Role::create(['name' => 'administrator'])
             ->givePermissionTo(Permission::all());
     }
 }
