@@ -11,7 +11,7 @@ try {
     window.$ = window.jQuery = require('jquery');
     window.slugify = require('slugify');
 
-    require('admin-lte/node_modules/bootstrap/dist/js/bootstrap');
+    require('bootstrap-sass/assets/javascripts/bootstrap');
 } catch (e) {}
 
 /**
