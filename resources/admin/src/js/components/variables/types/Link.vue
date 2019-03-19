@@ -11,7 +11,7 @@
         <key-input v-if="!inList" v-model="item.key"></key-input>
         <div class="form-group">
             <label>
-                <input type="checkbox" class="flat-green" v-model="item.blank">
+                <input type="checkbox" class="flat-orange" v-model="item.blank">
                 Открывать в новой вкладке
             </label>
         </div>
@@ -55,9 +55,9 @@
             }
         },
         mounted() {
-            $('input[type="checkbox"].flat-green, input[type="radio"].flat-green').iCheck({
-                checkboxClass: 'icheckbox_flat-green',
-                radioClass   : 'iradio_flat-green'
+            $('input[type="checkbox"].flat-orange, input[type="radio"].flat-orange').iCheck({
+                checkboxClass: 'icheckbox_flat-orange',
+                radioClass: 'iradio_flat-orange'
             });
             console.log('Component String mounted.');
         }
