@@ -75,4 +75,14 @@ class BackupController extends Controller
             'size' => $storage->size($path),
         ];
     }
+
+    public function download(Request $request)
+    {
+        $name = $request->get('name');
+        $path = storage_path("app/backups/{$name}");
+        if (\File::isFile($path)) {
+            return response()->download($path);
+        }
+        return response()->json(['status' => 'error', 'message' => 'File not found'], 404);
+    }
 }

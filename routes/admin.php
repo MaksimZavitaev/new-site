@@ -29,6 +29,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
             Route::get('restore', 'BackupController@restore')->name('restore');
             Route::get('destroy', 'BackupController@destroy')->name('destroy');
             Route::post('upload', 'BackupController@upload')->name('upload');
+            Route::get('download', 'BackupController@download')->name('download');
         });
     }
 
