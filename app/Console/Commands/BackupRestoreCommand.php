@@ -14,7 +14,7 @@ class BackupRestoreCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'backup:restore';
+    protected $signature = 'backup:restore {name?}';
 
     /**
      * The console command description.
@@ -28,6 +28,17 @@ class BackupRestoreCommand extends Command
      */
     public function handle()
     {
+        $name = null;
+        if ($argName = $this->argument('name')) {
+            $ext = '.zip';
+            $name = strpos($argName, $ext) ? $argName : $argName . $ext;
+
+            if (!\File::isFile(storage_path("app/backups/{$name}"))) {
+                $this->error('Указанный файл не найден в директории бекапов');
+                return;
+            }
+        }
+
         if (app()->environment('production')) {
             $answer = $this->ask('Вы действительно хотите развернуть бекап? (yes|no)', false);
             if (!$answer || strtolower($answer) !== 'yes') {
@@ -39,7 +50,7 @@ class BackupRestoreCommand extends Command
         $this->clear();
 
         $restore = app(Restore::class);
-        $zip = app(Zip::class);
+        $zip = app(Zip::class, ['archiveName' => $name]);
         $dest = $zip->unpack();
         $restore->setFrom($dest);
         foreach ($restore->run() as $data) {

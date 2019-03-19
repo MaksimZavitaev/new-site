@@ -12,12 +12,12 @@ class Zip
     protected $archivePath;
     protected $archiveName;
 
-    public function __construct()
+    public function __construct($archiveName = null)
     {
         $this->config = config('backup');
         $this->zip = new \ZipArchive;
 
-        $this->archiveName = now()->format($this->config['format']) . '.zip';
+        $this->archiveName = $archiveName ?? now()->format($this->config['format']) . '.zip';
         $this->archivePath = $this->config['temporaryDirectory'] . $this->archiveName;
     }
 
@@ -68,9 +68,13 @@ class Zip
     public function unpack()
     {
         $storage = \Storage::disk($this->config['destination']['disks'][0]);
-        $files = collect($storage->files('backups'));
-        $file = $storage->path($files->last());
-        $this->archivePath = $file;
+        if ($storage->exists('backups/' . $this->archiveName)) {
+            $this->archivePath = $storage->path('backups/' . $this->archiveName);
+        } else {
+            $files = collect($storage->files('backups'));
+            $file = $storage->path($files->last());
+            $this->archivePath = $file;
+        }
         $now = now()->format($this->config['format']);
         $dest = $this->config['temporaryDirectory'] . $now . '/';
         $this
