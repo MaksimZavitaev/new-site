@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use App\Models\Page;
+use App\Models\PageVariable;
 use App\Observers\PageObserver;
+use App\Observers\PageVariableObserver;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -16,6 +18,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Page::observe(PageObserver::class);
+        PageVariable::observe(PageVariableObserver::class);
     }
 
     /**
