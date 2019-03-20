@@ -82,9 +82,8 @@ class MediaManager
         }
 
         return [
-            'url' => $this->disk->url($path),
-            'filename' => $fileName,
-            'path' => str_replace(env('APP_URL'), '', $path),
+            'url' => str_replace(env('APP_URL'), '', $this->disk->url($path)),
+            'path' => $path,
             'size' => $this->disk->size($path),
         ];
     }
