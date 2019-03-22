@@ -24,13 +24,7 @@ class PageController extends Controller
             $page = Page::whereLink("/${link}")->active()->withoutTrashed()->first();
 
             if ($page) {
-                $variables = $page
-                    ->variables->
-                    mapWithKeys(function ($item) {
-                        $key = $item['key'];
-                        $val = collect($item)->merge($item->data)->forget('data')->filter();
-                        return [$key => $val];
-                    });
+                $v = $page->getVariables();
 
                 $children = $page
                     ->parent
@@ -40,7 +34,7 @@ class PageController extends Controller
                         return $item->id !== $page->id;
                     });
 
-                return view($view, compact('page', 'variables', 'children'));
+                return view($view, compact('page', 'v', 'children'));
             }
             logger("Page ${link} not found!");
         } else {

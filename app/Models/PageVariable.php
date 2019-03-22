@@ -28,25 +28,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class PageVariable extends Model
 {
-    protected $primaryKey = 'key';
-    protected $keyType = 'string';
-    public $incrementing = false;
-
     protected $fillable = [
         'key',
-        'type',
         'sort',
     ];
-
-    protected $casts = [
-        'data' => 'object',
-    ];
-
-//    public function setKeyAttribute($value)
-//    {
-//        if ($value) {
-//            $this->incrementing = false;
-//        }
-//        $this->attributes['key'] = camel_case(str_slug($value, '_'));
-//    }
 }

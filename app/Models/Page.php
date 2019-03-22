@@ -94,9 +94,40 @@ class Page extends Model
         return $this->hasMany(self::class, 'parent_id');
     }
 
+    /**
+     * Возвращает список переменных
+     */
+    public function getVariables()
+    {
+        $variables = $this
+            ->variables()
+            ->get()
+            ->mapToGroups(function ($variable) {
+                return [$variable->pivot->key => $variable];
+            })->map(function ($variables) {
+                $is_list = $variables->first()->pivot->is_list;
+                $variables->transform(function ($variable) {
+                    return array_merge([
+                        'id' => $variable->id,
+                        '_sort' => $variable->sort,
+                        '_type' => $variable->type,
+                    ], $variable->data);
+                });
+
+                return $is_list ? $variables : $variables->first();
+            });
+        return array2object($variables->toArray());
+    }
+
+    /**
+     * Возвращает все переменные страницы
+     */
     public function variables()
     {
-        return $this->hasMany(PageVariable::class, 'page_id', 'id');
+        return $this
+            ->belongsToMany(Variable::class, 'pages_variables', 'page_id', 'id', 'id', 'page_variable_id')
+            ->withPivot(['key', 'is_list'])
+            ->orderBy('pages_variables.sort');
     }
 
     public function scopeChildren($query)
