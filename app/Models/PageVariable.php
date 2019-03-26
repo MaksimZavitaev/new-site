@@ -28,6 +28,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class PageVariable extends Model
 {
+    protected $table = 'pages_variables';
+
     protected $fillable = [
         'key',
         'sort',
