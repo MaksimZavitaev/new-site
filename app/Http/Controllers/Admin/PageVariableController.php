@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\VariableResource;
 use App\Models\Page;
 use App\Models\PageVariable;
+use App\Models\Variable;
+use DB;
 use Illuminate\Http\Request;
 
 class PageVariableController extends Controller
@@ -48,16 +50,28 @@ class PageVariableController extends Controller
      * @param Request $request
      * @param string $page
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return mixed
+     * @throws \Throwable
      */
     public function store(Request $request, Page $page)
     {
         $items = $request->all();
-        $variable = new PageVariable($items);
-        $variable->data = collect($items)->except($variable->getFillable());
-        $variable = $page->variables()->save($variable);
+        $variable = new Variable();
+        DB::transaction(function () use ($page, &$variable, $items) {
+            $pageVariable = new PageVariable();
+            $pageVariable->key = $items['key'];
+            $pageVariable->is_list = false;
+            $pageVariable->page_id = $page->id;
+            $pageVariable->save();
 
-        return response()->json($variable);
+            $variable->type = $items['type'];
+            $variable->data = $items;
+            $variable->page_variable_id = $pageVariable->id;
+            $variable->save();
+            $variable->pivot = $pageVariable;
+        });
+
+        return new VariableResource($variable);
     }
 
     /**
@@ -71,7 +85,7 @@ class PageVariableController extends Controller
      */
     public function destroy(Request $request, Page $page, $key)
     {
-        \DB::transaction(function () use ($key) {
+        DB::transaction(function () use ($key) {
             $variable = PageVariable::where('key', $key)->first();
             $variable->delete();
         });
