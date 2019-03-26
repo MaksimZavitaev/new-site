@@ -30,6 +30,8 @@ class PageVariable extends Model
 {
     protected $table = 'pages_variables';
 
+    public $timestamps = false;
+
     protected $fillable = [
         'key',
         'sort',
