@@ -64,4 +64,29 @@ class Variable extends Model
         }
         return $data;
     }
+
+    public function pivot()
+    {
+        $this->belongsTo(PageVariable::class);
+    }
+
+    public function setKeyAttribute($value)
+    {
+        $this->pivot->key = $value;
+        $this->pivot->save();
+    }
+
+    public function setIsListAttribute($value)
+    {
+        $this->pivot->set('is_list', $value)->save();
+    }
+
+    public function setDataAttribute($value)
+    {
+        $data = [];
+        foreach ($this->types[$this->type] as $field => $default) {
+            $data[$field] = $value[$field] ?: $default;
+        }
+        $this->attributes['data'] = json_encode($data);
+    }
 }
