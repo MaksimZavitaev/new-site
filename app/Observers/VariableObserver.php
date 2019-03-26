@@ -3,6 +3,7 @@
 namespace App\Observers;
 
 use App\Models\Variable;
+use App\Services\MediaManager;
 
 class VariableObserver
 {
@@ -36,7 +37,9 @@ class VariableObserver
      */
     public function deleted(Variable $variable)
     {
-        //
+        if (in_array($variable->type, ['image', 'file'])) {
+            app(MediaManager::class)->deleteFile($variable->data->path);
+        }
     }
 
     /**

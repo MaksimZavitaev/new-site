@@ -40,9 +40,7 @@ class PageVariableObserver
      */
     public function deleted(PageVariable $pageVariable)
     {
-        if (in_array($pageVariable->type, ['image', 'file'])) {
-            app(MediaManager::class)->deleteFile($pageVariable->data->path);
-        }
+
     }
 
     /**
