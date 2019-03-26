@@ -1,7 +1,7 @@
 <template>
     <box title="Список"
          :name="item.key"
-         :is-new="!item.created_at"
+         :is-new="!item.id"
          :in-list="inList"
          :processing="processing"
          :changed="changed"
@@ -87,7 +87,7 @@
         methods: {
             submit() {
                 this.processing = true;
-                let action = this.value.created_at ? this.update : this.create;
+                let action = this.value.id ? this.update : this.create;
 
                 if (this.files.length) {
                     Promise.all(this.uploadFiles())

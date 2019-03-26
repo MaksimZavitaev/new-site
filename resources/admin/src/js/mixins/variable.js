@@ -29,7 +29,7 @@ export default {
         }
     },
     created() {
-        let item = this.value.created_at ? {} : this.item;
+        let item = this.value.id ? {} : this.item;
         this.item = {...item, ...this.value};
         if (this.inList) {
             this.$emit('input', this.item);
@@ -64,7 +64,7 @@ export default {
         submit() {
             this.processing = true;
 
-            let action = this.value.created_at ? this.update : this.create;
+            let action = this.value.id ? this.update : this.create;
             if (this.file) {
                 this.uploadFile()
                     .then(response => {
@@ -84,7 +84,7 @@ export default {
             }
         },
         create() {
-            const {page_id, created_at, updated_at, ...data} = this.item;
+            const {page_id, ...data} = this.item;
             axios
                 .post(`${this.endpoint}`, data)
                 .then(response => {
@@ -112,7 +112,7 @@ export default {
                 });
         },
         update() {
-            const {page_id, created_at, updated_at, ...data} = this.item;
+            const {page_id, ...data} = this.item;
             axios
                 .put(`${this.endpoint}/${this.value.key}`, data)
                 .then(response => {
@@ -143,11 +143,11 @@ export default {
         reset() {
             if (this.file) this.file = null;
 
-            let item = this.value.created_at ? {} : this.item;
+            let item = this.value.id ? {} : this.item;
             this.item = {...item, ...this.value};
         },
         destroy() {
-            if (this.item.created_at) {
+            if (this.item.id) {
                 this.processing = true;
                 axios
                     .delete(`${this.endpoint}/${this.value.key}`)

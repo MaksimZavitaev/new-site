@@ -1,7 +1,7 @@
 <template>
     <box title="Строка"
          :name="item.key"
-         :is-new="!item.created_at"
+         :is-new="!item.id"
          :in-list="inList"
          :processing="processing"
          :changed="changed"

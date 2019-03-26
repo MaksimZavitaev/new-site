@@ -1,7 +1,7 @@
 <template>
     <box title="Текст"
          :name="item.key"
-         :is-new="!item.created_at"
+         :is-new="!item.id"
          :in-list="inList"
          :processing="processing"
          :changed="changed"
