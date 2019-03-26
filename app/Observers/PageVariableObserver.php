@@ -3,6 +3,7 @@
 namespace App\Observers;
 
 use App\Models\PageVariable;
+use App\Models\Variable;
 use App\Services\MediaManager;
 
 class PageVariableObserver
@@ -29,6 +30,14 @@ class PageVariableObserver
     public function updated(PageVariable $pageVariable)
     {
         //
+    }
+
+    public function deleting(PageVariable $pageVariable)
+    {
+        $variables = $pageVariable->variables;
+        if ($variables) {
+            Variable::whereIn('id', $variables->pluck('id'))->delete();
+        }
     }
 
     /**
