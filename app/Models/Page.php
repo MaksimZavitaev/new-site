@@ -119,6 +119,25 @@ class Page extends Model
         return array2object($variables->toArray());
     }
 
+    public function getVariablesFlatMap()
+    {
+        return $this
+            ->variables
+            ->map(function ($item) {
+                return [
+                    'id' => $item->id,
+                    'sort' => $item->sort,
+                    'type' => $item->type,
+                    'data' => $item->data,
+                    'key' => $item->pivot->key,
+                    'pivot_id' => $item->pivot->id,
+                    'page_id' => $item->pivot->page_id,
+                    'is_list' => $item->pivot->is_list,
+                    'variable_id' => $item->page_variable_id,
+                ];
+            });
+    }
+
     /**
      * Возвращает все переменные страницы
      */
