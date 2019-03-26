@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\VariableResource;
 use App\Models\Page;
 use App\Models\PageVariable;
 use Illuminate\Http\Request;
@@ -30,18 +31,17 @@ class PageVariableController extends Controller
      * @param string $page
      * @param string $key
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return mixed
      */
     public function update(Request $request, Page $page, $key)
     {
         $items = $request->all();
         $variable = $page->variables()->findOrFail($key);
-        $variable->fill($items);
-        $variable->data = collect($items)->except($variable->getFillable());
-
+        $variable->data = $items;
+        $variable->key = $items['key'];
         $variable->save();
 
-        return response()->json($variable);
+        return new VariableResource($variable);
     }
 
     /**
