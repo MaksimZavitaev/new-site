@@ -11,11 +11,7 @@ class PageVariableController extends Controller
 {
     public function index(Request $request, $page)
     {
-        $variables = Page::find($page)
-            ->variables()
-            ->get();
-
-        return response()->json($variables);
+        return Page::find($page)->getVariablesFlatMap();
     }
 
     public function show(Request $request, $page, $key)
@@ -71,12 +67,14 @@ class PageVariableController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      * @throws \Exception
+     * @throws \Throwable
      */
     public function destroy(Request $request, Page $page, $key)
     {
-        $variable = $page->variables()->find($key);
-
-        $variable->delete();
+        \DB::transaction(function () use ($key) {
+            $variable = PageVariable::where('key', $key)->first();
+            $variable->delete();
+        });
 
         return response()->json(true);
     }
