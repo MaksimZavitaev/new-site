@@ -150,7 +150,7 @@ export default {
             if (this.item.id) {
                 this.processing = true;
                 axios
-                    .delete(`${this.endpoint}/${this.value.id}`)
+                    .delete(`${this.endpoint}/${this.value.key}`)
                     .then(response => {
                         this.processing = false;
                         this.changed = false;
