@@ -34,4 +34,9 @@ class PageVariable extends Model
         'key',
         'sort',
     ];
+
+    public function variables()
+    {
+        return $this->hasMany(Variable::class);
+    }
 }
