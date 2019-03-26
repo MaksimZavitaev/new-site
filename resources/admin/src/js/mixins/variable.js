@@ -39,7 +39,7 @@ export default {
     },
     methods: {
         check() {
-            return axios.get(`${this.endpoint}/${this.value.key}`)
+            return axios.get(`${this.endpoint}/${this.value.id}`)
         },
 
         uploadFile(file = null) {
@@ -114,7 +114,7 @@ export default {
         update() {
             const {page_id, ...data} = this.item;
             axios
-                .put(`${this.endpoint}/${this.value.key}`, data)
+                .put(`${this.endpoint}/${this.value.id}`, data)
                 .then(response => {
                     this.processing = false;
                     this.changed = false;
@@ -150,7 +150,7 @@ export default {
             if (this.item.id) {
                 this.processing = true;
                 axios
-                    .delete(`${this.endpoint}/${this.value.key}`)
+                    .delete(`${this.endpoint}/${this.value.id}`)
                     .then(response => {
                         this.processing = false;
                         this.changed = false;
