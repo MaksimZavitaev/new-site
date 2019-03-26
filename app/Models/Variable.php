@@ -78,7 +78,8 @@ class Variable extends Model
 
     public function setIsListAttribute($value)
     {
-        $this->pivot->set('is_list', $value)->save();
+        $this->pivot->is_list = $value;
+        $this->pivot->save();
     }
 
     public function setDataAttribute($value)
