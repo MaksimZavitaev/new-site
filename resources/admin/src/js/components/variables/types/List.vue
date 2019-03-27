@@ -22,7 +22,7 @@
                 <draggable v-model="item.items" :options="{handle: '.box-header'}">
                     <component
                         v-for="(el, key) in item.items"
-                        :key="el.key"
+                        :key="el.id"
                         :is="'v-' + item.itemsType"
                         v-model="item.items[key]"
                         :page-id="pageId"
@@ -103,8 +103,28 @@
 
                 axios.get(`${this.endpoint}/${this.value.key}`)
                     .then(response => {
-                        const {data, ...fields} = response.data;
-                        this.item = {...data, ...fields};
+                        this.item = _.chain(response.data)
+                            .groupBy('key')
+                            .toPairs()
+                            .map((data) => {
+                                let [key, item] = data;
+                                if (item.length > 0) {
+                                    const {data, ...first} = item[0];
+                                    if (!first.is_list)
+                                        return first;
+
+                                    return {
+                                        ...first,
+                                        type: 'list',
+                                        itemsType: first.type,
+                                        items: item.map(item => {
+                                            let {data, ...fields} = item;
+                                            return {...data, ...fields};
+                                        })
+                                    }
+                                }
+                            })
+                            .value()[0];
                         this.processing = false;
                     })
             },
