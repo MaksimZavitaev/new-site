@@ -40,6 +40,10 @@ class VariableObserver
         if (in_array($variable->type, ['image', 'file'])) {
             app(MediaManager::class)->deleteFile($variable->data->path);
         }
+
+        if(!$variable->pivot->variables->count()) {
+            $variable->pivot->delete();
+        }
     }
 
     /**
