@@ -86,17 +86,15 @@
         },
         methods: {
             submit() {
-                this.processing = true;
-                let action = this.value.id ? this.update : this.create;
-
-                if (this.files.length) {
-                    Promise.all(this.uploadFiles())
-                        .then(() => {
-                            action();
-                        });
-                } else {
-                    action();
-                }
+                // this.processing = true;
+                let action = this.value.id ? this.updateList : this.createList;
+                action();
+            },
+            createList() {
+                console.log(this.item.items);
+            },
+            updateList() {
+                console.log(this.item.items);
             },
             reset() {
                 this.processing = true;
@@ -143,9 +141,7 @@
 
             },
             addElement() {
-                let max = Math.max.apply(Math, this.item.items.map(i => (typeof i.key === 'string') ? 0 : i.key));
-                max = Number.isFinite(max) ? max : 0;
-                this.item.items.push({key: max + 1, type: this.item.itemsType});
+                this.item.items.push({key: this.item.key, is_list: true, type: this.item.itemsType});
             },
             removeElement({key}) {
                 this.item.items.splice(this.item.items.findIndex(el => el.key === key), 1)
