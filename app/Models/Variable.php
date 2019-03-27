@@ -68,7 +68,7 @@ class Variable extends Model
 
     public function pivot()
     {
-        $this->belongsTo(PageVariable::class);
+        return $this->belongsTo(PageVariable::class, 'page_variable_id', 'id');
     }
 
     public function setKeyAttribute($value)
