@@ -38,7 +38,8 @@ class Variable extends Model
             'url' => '',
             'size' => '',
             'path' => '',
-            'update_at' => '',
+            'name' => '',
+            'updated' => '',
         ],
     ];
 
