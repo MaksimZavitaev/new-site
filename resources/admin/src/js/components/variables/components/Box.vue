@@ -17,8 +17,8 @@
             <slot/>
         </div>
         <div class="box-footer">
-            <button class="btn btn-warning btn-sm" @click="reset()" v-show="!inList && changed">Сброс</button>
-            <button class="btn btn-success btn-sm" @click="submit()" v-show="!inList && changed">Сохранить</button>
+            <button class="btn btn-warning btn-sm" @click="reset()" v-show="changed">Сброс</button>
+            <button class="btn btn-success btn-sm" @click="submit()" v-show="changed">Сохранить</button>
             <delete-button class="btn-sm pull-right" @destroyed="destroy" v-if="!inList"></delete-button>
         </div>
         <div class="overlay" v-show="processing">

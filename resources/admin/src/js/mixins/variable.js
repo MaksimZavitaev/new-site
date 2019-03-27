@@ -36,6 +36,8 @@ export default {
         } else {
             this.$emit('input', {...this.item});
         }
+        if(this.item.type !== 'list')
+            this.reset();
     },
     methods: {
         check() {
@@ -203,7 +205,9 @@ export default {
         },
         item: {
             handler() {
-                this.changed = !(JSON.stringify(this.value) === JSON.stringify(this.item))
+                if (this.item.type !== 'list') {
+                    this.changed = !(JSON.stringify(this.value) === JSON.stringify(this.item));
+                }
             },
             deep: true
         },
