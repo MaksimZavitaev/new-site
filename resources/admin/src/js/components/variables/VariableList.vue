@@ -58,6 +58,7 @@
 </style>
 
 <script>
+    import _ from 'lodash';
     import axios from 'axios';
 
     import Box from './components/Box.vue';
@@ -94,10 +95,32 @@
                 axios.get(`/admin/pages/${this.pageId}/variables`)
                     .then(({data}) => {
                         this.loading = false;
-                        this.items = data.map(item => {
-                            const {data, ...fields} = item;
-                            return {...data, ...fields}
-                        })
+                        this.items = _.chain(data)
+                            .groupBy('key')
+                            .toPairs()
+                            .map((data) => {
+                                let [key, item] = data;
+                                if (item.length > 0) {
+                                    const {data, ...first} = item[0];
+                                    if (!first.is_list)
+                                        return {
+                                            ...data,
+                                            ...first
+                                        };
+
+                                    return {
+                                        ...first,
+                                        type: 'list',
+                                        itemsType: first.type,
+                                        items: item.map(item => {
+                                            let {data, ...fields} = item;
+                                            return {...data, ...fields};
+                                        })
+                                    }
+                                }
+                            })
+                            .value();
+                        console.log(this.items);
                     })
                     .catch(error => {
                         this.loading = false;
