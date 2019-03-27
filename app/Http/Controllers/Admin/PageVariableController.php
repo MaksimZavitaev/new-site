@@ -19,12 +19,11 @@ class PageVariableController extends Controller
 
     public function show(Request $request, $page, $key)
     {
-        $variable = PageVariable::where('page_id', $page)
-            ->find($key);
+        $variable = Page::find($page)->variables()->wherePivot('key', $key)->get();
 
         $code = $variable ? 200 : 404;
 
-        return response()->json($variable, $code);
+        return response()->json(VariableResource::collection($variable), $code);
     }
 
     /**
