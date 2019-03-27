@@ -85,8 +85,12 @@ class PageVariableController extends Controller
     public function destroy(Request $request, Page $page, $key)
     {
         DB::transaction(function () use ($key) {
-            $variable = PageVariable::where('key', $key)->first();
-            $variable->delete();
+            if (is_numeric($key)) {
+                Variable::find($key)->delete();
+            } else {
+                $variable = PageVariable::where('key', $key)->first();
+                $variable->delete();
+            }
         });
 
         return response()->json(true);
