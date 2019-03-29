@@ -57,9 +57,15 @@ class PageVariableController extends Controller
         $items = $request->all();
         $variable = new Variable();
         DB::transaction(function () use ($page, &$variable, $items) {
-            $pageVariable = new PageVariable();
+            if (isset($items['variable_id'])) {
+                $pageVariable = PageVariable::where('id', $items['variable_id']);
+            } else {
+                $pageVariable = PageVariable::where('key', $items['key']);
+            }
+            $pageVariable = $pageVariable->first() ?? new PageVariable();
+
             $pageVariable->key = $items['key'];
-            $pageVariable->is_list = false;
+            $pageVariable->is_list = $items['is_list'];
             $pageVariable->page_id = $page->id;
             $pageVariable->save();
 
@@ -67,7 +73,6 @@ class PageVariableController extends Controller
             $variable->data = $items;
             $variable->page_variable_id = $pageVariable->id;
             $variable->save();
-            $variable->pivot = $pageVariable;
         });
 
         return new VariableResource($variable);
@@ -94,5 +99,30 @@ class PageVariableController extends Controller
         });
 
         return response()->json(true);
+    }
+
+    public function storeList(Request $request, Page $page)
+    {
+        $pageVariable = new PageVariable();
+        $pageVariable->page_id = $page->id;
+        $pageVariable->key = $request->input('key');
+        $pageVariable->is_list = true;
+        $pageVariable->save();
+
+        return $pageVariable;
+    }
+
+    public function updateList(Request $request, $page_id, $id)
+    {
+        $pageVariable = PageVariable::findOrFail($id);
+        $pageVariable->key = $request->input('key');
+        $pageVariable->save();
+
+        return $pageVariable;
+    }
+
+    public function destroyList(Request $request, $page_id, $id)
+    {
+        return response()->json(PageVariable::findOrFail($id)->delete());
     }
 }
