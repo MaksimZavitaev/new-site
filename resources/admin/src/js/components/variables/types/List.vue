@@ -2,13 +2,13 @@
     <box title="Список"
          :name="item.key"
          :is-new="!item.id"
-         :in-list="inList"
          :processing="processing"
          :changed="changed"
+         :is-list="true"
          @submit="submit"
          @reset="reset"
          @destroy="destroy">
-        <key-input v-if="!inList" v-model="item.key"></key-input>
+        <key-input v-model="item.key"></key-input>
         <div class="form-group" v-if="!item.itemsType">
             <label for="type">Выберите тип списка</label>
             <select id="type" class="form-control" v-model="item.itemsType">
@@ -22,13 +22,13 @@
                 <draggable v-model="item.items" :options="{handle: '.box-header'}">
                     <component
                         v-for="(el, key) in item.items"
-                        :key="el.id"
+                        :key="key"
                         :is="'v-' + item.itemsType"
                         v-model="item.items[key]"
                         :page-id="pageId"
                         :in-list="true"
-                        @fileChanged="fileChanged"
-                        @deleted="removeElement(el)"></component>
+                        @submitElement="submitElement"
+                        @deleted="removeElement(key)"></component>
                 </draggable>
                 <button class="btn btn-block btn-success" @click="addElement">Добавить</button>
             </div>
@@ -38,7 +38,6 @@
 
 <script>
     import axios from 'axios'
-    import variable from '../../../mixins/variable'
     import draggable from 'vuedraggable'
 
     import Box from '../components/Box.vue';
@@ -51,7 +50,6 @@
     import VList from './List.vue';
 
     export default {
-        mixins: [variable],
         components: {
             draggable,
             Box,
@@ -63,8 +61,15 @@
             VText,
             VList
         },
+        props: {
+            pageId: null,
+            value: {}
+        },
         data() {
             return {
+                endpoint: `/admin/pages/${this.pageId}/variables/list`,
+                processing: false,
+                changed: false,
                 files: [],
                 types: {
                     'string': 'Строка',
@@ -74,6 +79,9 @@
                     'image': 'Изображение',
                 },
                 item: {
+                    id: null,
+                    key: null,
+                    variable_id: null,
                     type: 'list',
                     itemsType: '',
                     sort: 0,
@@ -81,89 +89,111 @@
                 },
             }
         },
+        created() {
+            let item = this.value.variable_id ? {} : this.item;
+            this.item = {...item, ...this.value};
+        },
         mounted() {
             console.log('Component List mounted.')
         },
         methods: {
             submit() {
                 // this.processing = true;
-                let action = this.value.id ? this.updateList : this.createList;
+                let action = this.item.variable_id ? this.update : this.create;
                 action();
             },
-            createList() {
-                console.log(this.item.items);
-            },
-            updateList() {
-                console.log(this.item.items);
-            },
-            reset() {
+            create() {
                 this.processing = true;
 
-                axios.get(`${this.endpoint}/${this.value.key}`)
-                    .then(response => {
-                        this.item = _.chain(response.data)
-                            .groupBy('key')
-                            .toPairs()
-                            .map((data) => {
-                                let [key, item] = data;
-                                if (item.length > 0) {
-                                    const {data, ...first} = item[0];
-                                    if (!first.is_list)
-                                        return first;
-
-                                    return {
-                                        ...first,
-                                        type: 'list',
-                                        itemsType: first.type,
-                                        items: item.map(item => {
-                                            let {data, ...fields} = item;
-                                            return {...data, ...fields};
-                                        })
-                                    }
-                                }
-                            })
-                            .value()[0];
-                        this.processing = false;
-                    })
-            },
-            uploadFiles() {
-                let promises = [];
-                this.files.forEach((component, i, components) => {
-                    promises.push(this.uploadFile(component.file)
-                        .then(response => {
-                            component.item = Object.assign(component.item, response.data)
-                            component.file = false;
-                            components.splice(i, 1);
-                        }));
+                axios.post(`${this.endpoint}`, {
+                    key: this.item.key
+                }).then(res => {
+                    console.log('Success');
+                    console.log(res);
+                    this.item.variable_id = res.data.id;
+                    this.item.items.map(item => {
+                        item.variable_id = res.data.id;
+                        return item;
+                    });
+                    this.$emit('input', this.item);
+                    this.changed = false;
+                    this.processing = false;
+                }).catch(err => {
+                    this.processing = false;
                 });
+            },
+            update() {
+                this.processing = true;
 
-                return promises;
-
+                axios.put(`${this.endpoint}/${this.item.variable_id}`, {
+                    key: this.item.key
+                }).then(res => {
+                    console.log('Success');
+                    this.item.variable_id = res.data.id;
+                    this.item.items.map(item => {
+                        item.variable_id = res.data.id;
+                        return item;
+                    });
+                    this.$emit('input', this.item);
+                    this.processing = false;
+                }).catch(err => {
+                    this.processing = false;
+                });
+            },
+            destroy() {
+                this.processing = true;
+                if (this.value.variable_id) {
+                    axios.delete(`${this.endpoint}/${this.item.variable_id}`)
+                        .then(() => {
+                            this.$emit('deleted', this.item);
+                            this.processing = false;
+                        })
+                } else {
+                    this.$emit('deleted', this.item);
+                    this.processing = false;
+                }
+            },
+            reset() {
+                this.item.key = this.value.key;
+                this.item.itemsType = this.value.itemsType;
             },
             addElement() {
-                this.item.items.push({key: this.item.key, is_list: true, type: this.item.itemsType});
+                this.item.items.push({
+                    key: this.item.key,
+                    variable_id: this.item.variable_id,
+                    is_list: true,
+                    type: this.item.itemsType
+                });
             },
-            removeElement({key}) {
-                this.item.items.splice(this.item.items.findIndex(el => el.key === key), 1)
+            removeElement(index) {
+                this.item.items.splice(index, 1)
             },
-            // addVariable(type) {
-            //     let max = Math.max.apply(Math, this.item.items.map(i => (typeof i.key === 'string') ? 0 : i.key));
-            //     max = Number.isFinite(max) ? max : 0;
-            //     this.item.items.unshift({key: max + 1, type})
-            // },
-            fileChanged(component) {
-                if (component.file) {
-                    this.files.push(component);
-                }
+            submitElement(payload) {
+                this.item.variable_id = payload.variable_id;
+                this.item.key = payload.key;
+                this.item.items.map(item => {
+                    item.variable_id = this.item.variable_id;
+                    return item;
+                });
             }
         },
         watch: {
-            'item.items': {
-                handler(newVal, oldVal) {
-                    this.changed = oldVal.length !== 0
-                },
-                deep: true
-            }
+            'item.variable_id'(val) {
+                this.changed = val !== this.item.variable_id;
+            },
+            'item.key'() {
+                this.changed = this.item.variable_id && (this.value.key.toString() !== this.item.key.toString());
+            },
+            //     this.changed = this.value.key.toString() !== this.item.key.toString();
+            //     // if (this.changed)
+            //     //     this.item.items.map(item => {
+            //     //         item.key = this.item.key;
+            //     //         return item;
+            //     //     })
+            // },
+            // 'item.itemsType'() {
+            //     this.changed = this.value.itemsType !== this.item.itemsType;
+            // }
         }
     }
 </script>

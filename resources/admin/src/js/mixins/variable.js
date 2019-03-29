@@ -36,7 +36,7 @@ export default {
         } else {
             this.$emit('input', {...this.item});
         }
-        if(this.item.type !== 'list')
+        if (!this.isList())
             this.reset();
     },
     methods: {
@@ -94,6 +94,7 @@ export default {
                     this.changed = false;
                     const {data, ...fields} = response.data;
                     this.$emit('input', {...data, ...fields});
+                    this.$emit('submitElement', response.data);
 
                     this.$notify({
                         group: 'app',
@@ -122,6 +123,7 @@ export default {
                     this.changed = false;
                     const {data, ...fields} = response.data;
                     this.$emit('input', {...data, ...fields});
+                    this.$emit('submitElement', response.data);
 
                     this.$notify({
                         group: 'app',
@@ -152,7 +154,7 @@ export default {
             if (this.item.id) {
                 this.processing = true;
                 axios
-                    .delete(`${this.endpoint}/${this.value.is_list ? this.value.id : this.value.key}`)
+                    .delete(`${this.endpoint}/${this.value.id}`)
                     .then(response => {
                         this.processing = false;
                         this.changed = false;
@@ -186,6 +188,9 @@ export default {
                     text: 'Переменная успешно удалена!'
                 });
             }
+        },
+        isList() {
+            return this.item.type === 'list'
         }
     },
     watch: {
@@ -205,7 +210,7 @@ export default {
         },
         item: {
             handler() {
-                if (this.item.type !== 'list') {
+                if (!this.isList()) {
                     this.changed = !(JSON.stringify(this.value) === JSON.stringify(this.item));
                 }
             },
