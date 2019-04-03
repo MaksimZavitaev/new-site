@@ -11,6 +11,9 @@ class HomeController extends Controller
     public function __invoke()
     {
         $page = Page::whereLink('/')->first();
+        if (!$page) {
+            return abort(404);
+        }
         $v = $page->getVariables();
         return view('home', compact('page', 'v'));
     }
