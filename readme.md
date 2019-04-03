@@ -8,6 +8,7 @@
 - Выполнить команду `composer install`
 - Создать файл `.env`, скопировав содержимое из `.env.example`
   - или выполнить `php -r "file_exists('.env') || copy('.env.example', '.env');"`
+- Создать базу данных и указать настройки для подключения к ней в `.env` файле
 - Выполнить команды:
     ```
     php artisan key:generate --ansi
