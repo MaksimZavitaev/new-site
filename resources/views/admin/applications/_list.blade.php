@@ -4,6 +4,7 @@
 <div class="col-xs-12">
     @component('admin.components.boxed_table', ['name' => 'Заявки', 'route' => route('admin.applications.create')])
         @slot('header')
+            <th></th>
             <th>ID</th>
             <th>Название страницы</th>
             <th>Название формы</th>
@@ -11,7 +12,12 @@
         @endslot
 
         @foreach($applications as $application)
-            <tr data-href="{{ route('admin.applications.show', $application) }}">
+            <tr>
+                <td style="text-align: center; width: 10px;">
+                    <a href="{{ route('admin.applications.show', $application) }}">
+                        <i class="fa fa-eye"></i>
+                    </a>
+                </td>
                 <td>{{ $application->id  }}</td>
                 <td>
                     <a href="{{ route('admin.pages.edit', $application->page) }}">
