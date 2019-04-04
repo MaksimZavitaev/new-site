@@ -11,40 +11,23 @@
             </div>
         </div>
         <div class="box-body">
-            <div class="col-lg-4 col-md-4">
-                <div class="box box-warning">
-                    <div class="box-header">
-                        <h3 class="box-title">
-                            Добавить переменную
-                        </h3>
+            <div class="nav-tabs-custom tab-warning">
+                <ul class="nav nav-tabs">
+                    <li v-for="(title, type) in tabs">
+                        <a :href="`#${type}`" data-toggle="tab" aria-expanded="false">{{ title }}</a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div v-for="(title, type) in tabs" :id="type" class="tab-pane">
+                        <component
+                            v-for="(item, key) in items[type]"
+                            :key="item.key"
+                            :is="'v-' + item.type"
+                            v-model="items[type][key]"
+                            :page-id="pageId"
+                            @deleted="removeVariable(item)"></component>
                     </div>
-                    <div class="box-body">
-                        <button type="button" class="btn btn-default btn-block" @click="addVariable('string')">Строка
-                        </button>
-                        <button type="button" class="btn btn-default btn-block" @click="addVariable('text')">Текст
-                        </button>
-                        <button type="button" class="btn btn-default btn-block" @click="addVariable('link')">Ссылка
-                        </button>
-                        <button type="button" class="btn btn-default btn-block" @click="addVariable('image')">
-                            Изображение
-                        </button>
-                        <button type="button" class="btn btn-default btn-block" @click="addVariable('file')">Файл
-                        </button>
-                        <button type="button" class="btn btn-default btn-block" @click="addVariable('list')">Список
-                        </button>
-                    </div>
-                    <!-- /.box-body -->
                 </div>
-                <!-- /.box -->
-            </div>
-            <div class="col-lg-6 col-md-8">
-                <component
-                    v-for="(item, key) in items"
-                    :key="item.key"
-                    :is="'v-' + item.type"
-                    v-model="items[key]"
-                    :page-id="pageId"
-                    @deleted="removeVariable(item)"></component>
             </div>
         </div>
         <div class="overlay" v-show="loading">
@@ -82,6 +65,14 @@
         },
         data() {
             return {
+                tabs: {
+                    string: 'Строки',
+                    text: 'Текст',
+                    link: 'Сссылки',
+                    image: 'Изображения',
+                    file: 'Файлы',
+                    list: 'Списки'
+                },
                 items: [],
                 loading: false,
             }
@@ -119,6 +110,7 @@
                                     }
                                 }
                             })
+                            .groupBy('type')
                             .value();
                         console.log(this.items);
                     })
