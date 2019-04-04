@@ -1,0 +1,352 @@
+extends layouts/default
+block variables
+    - var title = "Soglasie.ru"
+
+block content
+
+    .c-main-page__slider
+        .b-promo-slider
+            .b-promo-slider__slider
+                .b-promo-slider__slide
+                    .b-promo-intro._main-page
+                    .b-promo-intro__bg-holder
+                        .b-promo-intro__bg(style="background-image: url('/upload/iblock/6ee/6ee60c2d3c4830fa2e79e569a4effaf6.png')")
+                        .b-promo-intro__bg._2x(style="background-image: url('/upload/iblock/6ee/6ee60c2d3c4830fa2e79e569a4effaf6.png')")
+                    .b-promo-intro__content-holder.content-center
+                        .b-promo-intro__caption Страхование квартиры и дома
+                        .b-promo-intro__description._gray.content-area
+                        p
+                            | Надежные решения от СК «Согласие» для сохранения уюта дома и отношений с соседями.
+                            br
+                        .b-promo-intro__offer
+                        a.button-filled(href='/nedvijimost/kalkulyator-strahovaniya-kvartiry/')
+                            | Рассчитать
+                .b-promo-slider__slide
+                    .b-promo-intro._main-page
+                    .b-promo-intro__bg-holder
+                        .b-promo-intro__bg(style="background-image: url('/upload/iblock/b95/b957d8e1dc577d2bd9727725bdccd8d0.png')")
+                        .b-promo-intro__bg._2x(style="background-image: url('/upload/iblock/b95/b957d8e1dc577d2bd9727725bdccd8d0.png')")
+                    .b-promo-intro__content-holder.content-center
+                        .b-promo-intro__caption Страхование путешественников
+                        .b-promo-intro__description._gray.content-area
+                        p
+                            | Лучший отдых — это смена впечатлений. И куда бы
+                            | вы ни направлялись,
+                            | в путешествие или командировку, хочется, чтобы они были положительными.
+                        .b-promo-intro__offer
+                        a.button-filled(href='/puteshestviya/kalkulyator-strahovaniya-vyezjayushih-za-rubej/')
+                            | Рассчитать
+                .b-promo-slider__slide
+                    .b-promo-intro._main-page
+                    .b-promo-intro__bg-holder
+                        .b-promo-intro__bg(style="background-image: url('/upload/iblock/cbf/cbfca510edd72af04fde3922b7238c41.png')")
+                        .b-promo-intro__bg._2x(style="background-image: url('/upload/iblock/cbf/cbfca510edd72af04fde3922b7238c41.png')")
+                    .b-promo-intro__content-holder.content-center
+                        .b-promo-intro__caption Страхование жизни и здоровья
+                        .b-promo-intro__description._gray.content-area
+                        | Страхование жизни и здоровья от несчастного случая. Ответственный подход к планам на
+                        | будущее для
+                        | Вас и Ваших близких.
+                        .b-promo-intro__offer
+                        a.button-filled(href='/zdorovje/kalkulyator-zdorovje/')
+                            | Рассчитать
+                .b-promo-slider__slide
+                    .b-promo-intro._main-page
+                    .b-promo-intro__bg-holder
+                        .b-promo-intro__bg(style="background-image: url('/upload/iblock/440/4404a04c962306c691e70545656dfa2d.jpg')")
+                        .b-promo-intro__bg._2x(style="background-image: url('/upload/iblock/440/4404a04c962306c691e70545656dfa2d.jpg')")
+                    .b-promo-intro__content-holder.content-center
+                        .b-promo-intro__caption Мобильное приложение "Согласие"
+                        .b-promo-intro__description._gray.content-area
+                        b Несколько кликов, чтобы узнать:
+                        br
+                        ul
+                            li  Перечень оформленных полисов;
+                            li Статус урегулирования;
+                            li Срок действия полиса;
+                            li Действия при страховом случае;
+                            li  Адреса офисов обслуживания.
+                        .b-promo-intro__offer
+                        a.button-filled(href='https://www.soglasie.ru/mobile/')
+                            | Подробнее
+                .b-promo-slider__slide
+                    .b-promo-intro._main-page
+                    .b-promo-intro__bg-holder
+                        .b-promo-intro__bg(style="background-image: url('/upload/iblock/264/2641b113c91db30ee7bdbc8e9c5bf484.png')")
+                        .b-promo-intro__bg._2x(style="background-image: url('/upload/iblock/264/2641b113c91db30ee7bdbc8e9c5bf484.png')")
+                    .b-promo-intro__content-holder.content-center
+                        .b-promo-intro__caption Автострахование КАСКО
+                        .b-promo-intro__description._gray.content-area
+                        p
+                            | Комфорт и безопасность на дороге зависит не только от вашего опыта
+                            | и возраста, но и от уверенности, что в непредвиденной ситуации
+                            | у вас
+                            | будет надежная поддержка.
+                        .b-promo-intro__offer
+                        a.button-filled(href='/avto/kalkulyator-kasko/')
+                            | Рассчитать
+                .b-promo-slider__slide
+                    .b-promo-intro._main-page
+                    .b-promo-intro__bg-holder
+                        .b-promo-intro__bg(style="background-image: url('/upload/iblock/6b4/6b41b1e97caae129c9d308554ba1b802.png')")
+                        .b-promo-intro__bg._2x(style="background-image: url('/upload/iblock/6b4/6b41b1e97caae129c9d308554ba1b802.png')")
+                    .b-promo-intro__content-holder.content-center
+                        .b-promo-intro__caption «Зеленая карта» (Green Card)
+                        .b-promo-intro__description._gray.content-area
+                        | Международный полис «Зеленая карта» (Green Card) позволит чувствовать себя в
+                        | путешествии за
+                        | границей так же комфортно, как и на родных дорогах
+                        .b-promo-intro__offer
+                        a.button-filled(href='https://www.soglasie.ru/avto/kalkulyator-zelenaya-karta/#/params')
+                            | РАССЧИТАТЬ
+            .b-promo-slider__arrows-holder._hiden.content-center
+            .b-promo-slider__arrows
+    .c-main-page__sticker
+        .b-sticky-menu._is-sticker
+            .content-center
+            .b-sticky-menu__sections
+                .b-sticky-menu__main-section
+                #blockMainServices.b-sticky-menu__head.b-sticky-menu__head_main
+                    | Я хочу застраховать
+                .b-sticky-menu__items
+                    a.b-sticky-menu__item(href='/individuals/avto/')
+                    span.b-sticky-menu__item-ico
+                        svg.svg-auto
+                        use(xlink:href='#svg-auto')
+                    span.b-sticky-menu__item-name Авто
+                    a.b-sticky-menu__item(href='/individuals/puteshestviya/')
+                    span.b-sticky-menu__item-ico
+                        svg.svg-trevel
+                        use(xlink:href='#svg-trevel')
+                    span.b-sticky-menu__item-name Путешествие
+                    a.b-sticky-menu__item(href='/individuals/zdorovje/')
+                    span.b-sticky-menu__item-ico
+                        svg.svg-health
+                        use(xlink:href='#svg-health')
+                    span.b-sticky-menu__item-name Здоровье
+                    a.b-sticky-menu__item(href='/individuals/nedvijimost/')
+                    span.b-sticky-menu__item-ico
+                        svg.svg-house
+                        use(xlink:href='#svg-house')
+                    span.b-sticky-menu__item-name Имущество
+                .b-sticky-menu__buy-online-holder
+                a.b-sticky-menu__buy-online-link.button(onclick="yaCounter8994928.reachGoal('headkupitkasko'); return true;", data-name='headkupit', href='/services/')
+                    | Купить
+                    | онлайн
+                .b-sticky-menu__services-section
+                .b-sticky-menu__services-list
+                    .b-sticky-menu__head Я хочу узнать
+                    .b-sticky-menu__service-item
+                    a.b-sticky-menu__service-link(href='https://lk.soglasie.ru/')
+                        | Личный кабинет Е-ОСАГО
+                    .b-sticky-menu__service-item
+                    a.b-sticky-menu__service-link(href='https://lk.soglasie.ru/dms/')
+                        | Личный кабинет ДМС
+                    .b-sticky-menu__service-item
+                    a.b-sticky-menu__service-link(href='/blank-polis/')
+                        | Проверка полиса на предмет хищения
+                    .b-sticky-menu__service-item
+                    a.b-sticky-menu__service-link(href='/services/regular-payment/')
+                        | Очередные платежи по КАСКО
+                    .b-sticky-menu__service-item
+                    a.b-sticky-menu__service-link(href='/individuals/kasko-status/')
+                        | Статус убытка
+                    .b-sticky-menu__service-item
+                    a.b-sticky-menu__service-link(href='/reviews/')
+                        | Жалобы
+                    .b-sticky-menu__service-item
+                    a.b-sticky-menu__service-link(href='/kbm/')
+                        | Несогласие с КБМ
+                    .b-sticky-menu__service-item
+                    a.b-sticky-menu__service-link(href='/mobile')
+                        | Мобильное приложение
+                .b-sticky-menu__service-common.b-sticky-menu__service-common_hide
+                    a.b-sticky-menu__common-link Сервисы
+                .b-sticky-menu__buy-online-holder
+                a.b-sticky-menu__buy-online-link.button(href='/insurance/') Страховой случай
+    .c-main-page__about
+        .b-confidence
+            .b-confidence__intro
+            .b-promo-tesis._confidence
+                .b-promo-tesis__bg-holder
+                .b-promo-tesis__bg(style="background-image: url('/upload/iblock/798/798fb7d91ee68bf649df659ef30a8269.jpg')")
+                .b-promo-tesis__content-holder
+                .b-promo-tesis__title
+                    | 25 лет доверие ведет
+                    br
+                    |  к Cогласию
+                .b-promo-tesis__text
+                    h1(style='font-size: 24px;margin-bottom: 20px;text-transform:uppercase') Страховая компания
+                    p
+                    | Наша миссия – создавать доверие между людьми.
+                    br
+                    |                 Каждый день мы работаем над тем, чтобы оправдать доверие наших клиентов и помочь им
+                    |                 избавиться от
+                    |                 тревог и подозрительности. Мы хотим на своём примере показать, что доверие порождает
+                    |                 доверие. И ведёт
+                    |                 к Согласию.
+            .b-confidence__main
+            .b-confidence__numbers
+                .b-number-statistics(data-stats='{"2012":{"year":"2012","count":"593098","money":"19530580000"},"2013":{"year":"2013","count":"719667","money":"25909344000"},"2014":{"year":"2014","count":"684277","money":"26999543000"},"2015":{"year":"2015","count":"459914","money":"23663341000"},"2016":{"year":"2016","count":"336923","money":"20423806000"},"2017":{"year":"2017","count":"1211931  ","money":" 20036595000"},"2018":{"year":"2018","count":"1415161","money":"16603659500"}}')
+                .b-number-statistics__holder
+                    .b-number-statistics__col
+                    .b-number-statistics__label Страховых случаев
+                    .b-number-statistics__num._accident 71 781
+                    .b-number-statistics__col
+                    .b-number-statistics__label Год
+                    .b-number-statistics__year
+                        .b-number-statistics__prev
+                        .b-number-statistics__year-num 2016
+                        .b-number-statistics__next
+                    .b-number-statistics__col
+                    .b-number-statistics__label Выплачено
+                    .b-number-statistics__num._pays 71 781
+            .b-confidence__more-holder
+                a.b-confidence__more.button-filled(href='http://doverie.soglasie.ru/') Подробнее о проекте
+                a.b-confidence__more.button-filled(href='/25/') 25 добрых лет
+    .c-main-page__info-plates
+        .b-info-plates._no-js
+            h2.b-info-plates__main-title Акции и спецпредложения
+            .b-info-plates__slider-wrap
+            .b-info-plates__prev
+            .b-info-plates__next
+            .b-info-plates__track-overflow
+                .b-info-plates__slider
+                .b-info-plates__slide
+                    .b-promotions-plate
+                    .b-promotions-plate__inner
+                        a.b-promotions-plate__foto-wrap(href='/promotions/formula-soglasiya-rasshirennaya/')
+                        img.b-promotions-plate__foto(src='/upload/iblock/cbc/cbc825fbe782eb0a90e55c5fc1b0263b.jpg', alt='Формула согласия')
+                        a.b-promotions-plate__content(href='/promotions/formula-soglasiya-rasshirennaya/')
+                        p.b-promotions-plate__discount Формула согласия
+                        h3.b-promotions-plate__title
+                            | Льготные условия перехода КАСКО из других
+                            | страховых компаний
+                            | – скидка до 15%
+                    .b-promotions-plate__footer
+                        a.b-promotions-plate__detail-link.button(href='/promotions/formula-soglasiya-rasshirennaya/') Узнать условия
+                        .b-promotions-plate__time-of-action Постоянная
+                .b-info-plates__slide
+                    .b-promotions-plate
+                    .b-promotions-plate__inner
+                        a.b-promotions-plate__foto-wrap(href='/promotions/perekhod/')
+                        img.b-promotions-plate__foto(src='/upload/iblock/539/5395dd3e7a94c01ace87b921bff29a48.jpg', alt='Переход')
+                        a.b-promotions-plate__content(href='/promotions/perekhod/')
+                        p.b-promotions-plate__discount Переход
+                        h3.b-promotions-plate__title
+                            | Воспользуйтесь льготными условиями перехода из
+                            | других
+                            | страховых компаний в ООО «СК «Согласие» и получите скидку на полис до 45%!
+                    .b-promotions-plate__footer
+                        a.b-promotions-plate__detail-link.button(href='/promotions/perekhod/')
+                        | Узнать
+                        | условия
+                        .b-promotions-plate__time-of-action Постоянная
+                .b-info-plates__slide
+                    .b-promotions-plate
+                    .b-promotions-plate__inner
+                        a.b-promotions-plate__foto-wrap(href='/promotions/1-god-13-mesyatsev/')
+                        img.b-promotions-plate__foto(src='/upload/iblock/c4f/c4f44da928b0574bd37c25a5513e5c40.jpg', alt='1 год = 13 месяцев')
+                        a.b-promotions-plate__content(href='/promotions/1-god-13-mesyatsev/')
+                        p.b-promotions-plate__discount 1 год = 13 месяцев
+                        h3.b-promotions-plate__title
+                            | Купите полисы КАСКО и страхования квартиры
+                            | единовременно и
+                            | получите дополнительный месяц!
+                    .b-promotions-plate__footer
+                        a.b-promotions-plate__detail-link.button(href='/promotions/1-god-13-mesyatsev/')
+                        | Узнать
+                        | условия
+                        .b-promotions-plate__time-of-action Постоянная
+            .b-info-plates__btn-block
+            a.b-info-plates__link-more(href='/promotions/') Смотреть ещё
+    .c-main-page__features
+        .content-center
+            .b-iconic-features._text-center
+            .b-iconic-features__cols
+                .b-iconic-features__col
+                .b-iconic-features__plate
+                    .b-iconic-features__icon
+                    svg.svg-message
+                        use(xlink:href='#svg-message')
+                    .b-iconic-features__name
+                    | Урегулирование онлайн
+                    .b-iconic-features__desc
+                    | Оптимизированный дистанционный процесс урегулирования убытков.
+                .b-iconic-features__col
+                .b-iconic-features__plate
+                    .b-iconic-features__icon
+                    svg.svg-message
+                        use(xlink:href='#svg-clock')
+                    .b-iconic-features__name
+                    | Ответ в течение часа
+                    .b-iconic-features__desc
+                    | Максимальная эффективность обусловлена оперативностью и высоким уровнем сервиса Компании.
+                .b-iconic-features__col
+                .b-iconic-features__plate
+                    .b-iconic-features__icon
+                    svg.svg-message
+                        use(xlink:href='#svg-pay')
+                    .b-iconic-features__name
+                    | Оплата онлайн
+                    .b-iconic-features__desc
+                    | СК «Согласие» обеспечивает простоту, удобство, оперативность, а главное - безопасность
+                    | оплаты полиса
+                    | онлайн.
+    .c-main-page__news
+        .content-center
+            .b-news-plates
+            .b-news-plates__title Новости и полезные статьи
+            .b-news-plates__main
+                ul.b-news-plates__items
+                li.b-news-plates__item
+                    a.b-news-plates__plate(href='/company/press-center/statistika-avariynosti-imen-ot-strakhovoy-kompanii-soglasie-uznayte-kakoe-mesto-v-renkinge-zanimaet-/')
+                    span.b-news-plates__bg-holder
+                        span.b-news-plates__bg(style='background-image:url(/local/templates/main/assets/images/news-item-1.jpg)')
+                        span.b-news-plates__bg._2x(style='background-image:url(/local/templates/main/assets/images/news-item-1.jpg)')
+                    span.b-news-plates__content-holder
+                        span.b-news-plates__date 2 апреля 2019
+                        span.b-news-plates__name
+                        | Статистика «аварийности» имен от страховой компании
+                        | «Согласие»:
+                        | узнайте какое место в рэнкинге занимает ваше имя
+                        span.b-news-plates__category Новости
+                li.b-news-plates__item
+                    a.b-news-plates__plate(href='/company/press-center/-soglasie-zapuskaet-produkt-po-strakhovaniyu-vyezzhayushchikh-v-fantasticheskie-miry/')
+                    span.b-news-plates__bg-holder
+                        span.b-news-plates__bg(style='background-image:url(/local/templates/main/assets/images/news-item-1.jpg)')
+                        span.b-news-plates__bg._2x(style='background-image:url(/local/templates/main/assets/images/news-item-1.jpg)')
+                    span.b-news-plates__content-holder
+                        span.b-news-plates__date 1 апреля 2019
+                        span.b-news-plates__name
+                        | «Согласие» запускает продукт по страхованию
+                        | выезжающих в
+                        | фантастические миры
+                        span.b-news-plates__category Новости
+                li.b-news-plates__item
+                    a.b-news-plates__plate(href='/company/press-center/zhyuri-premii-finaward-vklyuchilo-multiprodukt-ot-soglasiya-v-top-3-bankovskikh-strakhovykh-produkto/')
+                    span.b-news-plates__bg-holder
+                        span.b-news-plates__bg(style='background-image:url(/local/templates/main/assets/images/news-item-1.jpg)')
+                        span.b-news-plates__bg._2x(style='background-image:url(/local/templates/main/assets/images/news-item-1.jpg)')
+                    span.b-news-plates__content-holder
+                        span.b-news-plates__date 28 марта 2019
+                        span.b-news-plates__name
+                        | Жюри премии Finaward включило «Мультипродукт» от
+                        | «Согласия» в
+                        | топ-3 банковских страховых продуктов
+                        span.b-news-plates__category Новости
+                li.b-news-plates__item
+                    a.b-news-plates__plate(href='/company/press-center/strakhovaya-kompaniya-soglasie-vozobnovila-obligatornuyu-programmu-perestrakhovaniya-otvetstvennosti/')
+                    span.b-news-plates__bg-holder
+                        span.b-news-plates__bg(style='background-image:url(/local/templates/main/assets/images/news-item-1.jpg)')
+                        span.b-news-plates__bg._2x(style='background-image:url(/local/templates/main/assets/images/news-item-1.jpg)')
+                    span.b-news-plates__content-holder
+                        span.b-news-plates__date 26 марта 2019
+                        span.b-news-plates__name
+                        | Страховая компания «Согласие» возобновила облигаторную
+                        | программу
+                        | перестрахования ответственности
+                        span.b-news-plates__category Новости
+            .b-news-plates__footer
+                .b-news-plates__more-holder
+                a.b-news-plates__more.button(href='/company/press-center/') Показать еще

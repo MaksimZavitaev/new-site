@@ -1,0 +1,168 @@
+header.c-layout__header
+  .b-header
+    .b-header__top-section
+      .content-center
+        .b-header__burger
+          a.humburger
+            span
+        .b-header__menu-holder
+          .b-top-menu
+            .b-top-menu__first-holder
+              ul.b-top-menu__first-level
+                li.b-top-menu__first-item
+                  .b-top-menu__first-link.active
+                    | Частным лицам
+                li.b-top-menu__first-item
+                  a.b-top-menu__first-link(href='/firm/') Юридическим лицам
+                li.b-top-menu__first-item
+                  a.b-top-menu__first-link(href='/partners/') Партнерам
+                li.b-top-menu__first-item
+                  a.b-top-menu__first-link(href='/company/') Компания
+                li.b-top-menu__first-item
+                  a.b-top-menu__first-link(href='https://www.soglasie-vita.ru/', target='_blank') Согласие-ВИТА
+            .b-top-menu__second-holder
+              ul.b-top-menu__first-level
+                li.b-top-menu__first-item
+                  a.b-top-menu__first-link.js-search._search(href='#', data-href='#search') Поиск
+                li.b-top-menu__first-item._padding-none
+                  a.b-header-signin(href='https://lk.soglasie.ru/', onclick="yaCounter8994928.reachGoal('lkbtn'); return true;", target='_blank') Личный кабинет
+        .b-header__mobile-menu-holder
+          .b-top-menu._mobile
+            ul.b-top-menu__first-level
+              li.b-top-menu__first-item
+                a.b-top-menu__first-link.js-search._search(href='#', data-href='#search') Поиск
+              li.b-top-menu__first-item._padding-none
+                a.b-header-signin(href='https://lk.soglasie.ru/', onclick="yaCounter8994928.reachGoal('lkbtn'); return true;", target='_blank') Личный кабинет
+        #search.b-search-popup
+          .b-search-popup__holder
+            .content-center
+              form.b-header-search.b-search-popup__header-search(action='/search/')
+                input.b-header-search__input(type='text', name='q', placeholder='Введите поисковый запрос')
+                .b-header-search__ico
+                  svg(viewBox='0 0 16 16', width='100%', height='100%')
+                    rect(style='fill:none', width='16', height='16')
+                    path(style='fill: #E1E4E5', d='M15.7,14.3l-3-3c0,0-0.1-0.1-0.1-0.1C13.5,10,14,8.6,14,7c0-3.9-3.1-7-7-7S0,3.1,0,7c0,3.9,3.1,7,7,7c1.6,0,3-0.5,4.2-1.4c0,0,0,0.1,0.1,0.1l3,3c0.2,0.2,0.5,0.3,0.7,0.3s0.5-0.1,0.7-0.3C16.1,15.3,16.1,14.7,15.7,14.3zM7,12c-2.8,0-5-2.2-5-5s2.2-5,5-5s5,2.2,5,5S9.8,12,7,12z')
+                a.b-header-search__clear(href='#')
+          .b-search-popup__close
+        .b-header__subscribe._hide
+          .b-header__subscribe-wrap
+            .b-form-subscribe.b-form-subscribe_hidden.b-form-subscribe--theme-header-subscribe(style='display: block;')
+              .b-form-subscribe__form-wrapper
+                .b-form-subscribe__title Подписаться на новости
+                form(action='/subscribe_edit')
+                  .b-form-subscribe__input-area
+                    label.b-order-form__field.b-order-form__field--theme-subscribe.u-mask-field
+                      span.b-order-form__field-label E-mail
+                      span.b-order-form__field-inputs.b-text-input.iblock._initiated
+                        input.b-order-form__field-input.u-mask.b-text-input__input(type='email', name='sf_EMAIL', size='20', value='', data-mask='emailMask', data-required='data-required')
+                        span.b-order-form__field-none
+                          | Пожалуйста, укажите ваш
+                          | e-mail
+                  .b-form-subscribe__input-area
+                    label.b-checkbox.b-checkbox--theme-subscribe
+                      input.b-checkbox__input(type='checkbox', name='confirm')
+                      span.b-checkbox__icon
+                      span.b-checkbox__content
+                        span.b-checkbox__text
+                          | Подтверждаю
+                          a(href='/upload/Terms_of_use.pdf', target='_blank')
+                            | согласие на
+                            | обработку моих персональных данных
+                    .b-form-subscribe__field-error.b-form-subscribe_hidden
+                  .b-form-subscribe__input-area
+                    input.button-filled.button-filled--theme-subscribe(type='submit', name='OK', value='Подписаться')
+              .b-form-subscribe__success.b-form-subscribe_hidden
+                .b-request-confirm.b-request-confirm--theme-subscribe
+                  .b-request-confirm__plate
+                    .b-request-confirm__caption Спасибо
+                    .b-request-confirm__intro
+                      | Вам на почту придет письмо с
+                      | подтверждением подписки
+              a.b-header__subscribe-close(href='#')
+    .b-header__middle-section.b-header__middle-section
+      .content-center
+        .b-header__logo-holder
+          .b-header__logo
+            img(src='/local/templates/main/assets/images/logo-header.svg', alt='Страховая компания Согласие')
+        .b-header__contacts-holder
+          .b-header__federal-phone
+            .b-phone-city
+              .b-phone-city__number-holder
+                a.b-phone-city__number(href='tel:88007550001') 8 800 755 00 01
+              .b-phone-city__option-holder
+                a.b-phone-city__option.b-phone-city__option_arrowed.js-modal(data-href='#select-city-global-popup') Москва
+                .b-form-modal.iblock
+                  #select-city-global-popup._hidden(style='display: none;')
+                    .b-form-modal__plate
+                      .b-form-modal__form.u-mask-scope
+                        .b-form-modal__title Выберите свой регион
+                        .b-form-modal__body
+                          .b-form-modal__input-holder
+                            .b-text-input.iblock._search._initiated
+                              input.b-text-input__input(type='text', placeholder='Найти населенный пункт', name='text', data-ajax='/local/templates/.default/components/soglasie/city_select/main/ajax.php')
+                              .b-text-input__fakeholder
+                          .b-form-modal__select-city-list
+                            ul
+                              li
+                                a(href='/local/ajax/city/index.php?city=Архангельск') Архангельск
+                              li
+                                a(href='/local/ajax/city/index.php?city=Астрахань') Астрахань
+                              li
+                                a(href='/local/ajax/city/index.php?city=Барнаул') Барнаул
+                              li
+                                a(href='/local/ajax/city/index.php?city=Белгород') Белгород
+                              li
+                                a(href='/local/ajax/city/index.php?city=Владивосток') Владивосток
+                              li
+                                a(href='/local/ajax/city/index.php?city=Волгоград') Волгоград
+                              li
+                                a(href='/local/ajax/city/index.php?city=Воронеж') Воронеж
+                              li
+                                a(href='/local/ajax/city/index.php?city=Грозный') Грозный
+                              li
+                                a(href='/local/ajax/city/index.php?city=Дзержинск') Дзержинск
+                              li
+                                a(href='/local/ajax/city/index.php?city=Екатеринбург') Екатеринбург
+                              li
+                                a(href='/local/ajax/city/index.php?city=Казань') Казань
+                              li
+                                a(href='/local/ajax/city/index.php?city=Краснодар') Краснодар
+                              li
+                                a(href='/local/ajax/city/index.php?city=Красноярск') Красноярск
+                              li
+                                a(href='/local/ajax/city/index.php?city=Москва') Москва
+                              li
+                                a(href='/local/ajax/city/index.php?city=Мурманск') Мурманск
+                              li
+                                a(href='/local/ajax/city/index.php?city=Набережные Челны')
+                                  | Набережные
+                                  | Челны
+                              li
+                                a(href='/local/ajax/city/index.php?city=Омск') Омск
+                              li
+                                a(href='/local/ajax/city/index.php?city=Орел') Орел
+                              li
+                                a(href='/local/ajax/city/index.php?city=Оренбург') Оренбург
+                              li
+                                a(href='/local/ajax/city/index.php?city=Пермь') Пермь
+                              li
+                                a(href='/local/ajax/city/index.php?city=Ростов-на-Дону') Ростов-на-Дону
+                              li
+                                a(href='/local/ajax/city/index.php?city=Санкт-Петербург') Санкт-Петербург
+                              li
+                                a(href='/local/ajax/city/index.php?city=Тверь') Тверь
+                              li
+                                a(href='/local/ajax/city/index.php?city=Уфа') Уфа
+          .b-header__town-phone
+            .b-phone-city
+              .b-phone-city__number-holder
+                a.b-phone-city__number(href='tel:+74957390101')
+                  | +7 495 739 01 01
+              .b-phone-city__option-holder
+                a.b-phone-city__option(href='/offices/list/') Офисы
+        .b-header__main-links
+          a.b-header__main-link.button(onclick="yaCounter8994928.reachGoal('headkupitkasko'); return true;", data-name='headkupit', href='/services/') Купить онлайн
+          a.b-header__main-link.button(data-name='headsluch', href='/insurance/') Страховой случай
+      .b-header__mobile-links
+        a.b-header__mobile-call.ico-phone(href='tel:+74957390101')
+        a.b-header__mobile-call.ico-map-marker(href='/offices/list/')

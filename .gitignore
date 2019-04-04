@@ -4,6 +4,8 @@
 /public/storage
 /storage/*.key
 /vendor
+/resources/frontend/node_modules
+/resources/frontend/dist
 .env
 .phpstorm.meta.php
 _ide_helper.php

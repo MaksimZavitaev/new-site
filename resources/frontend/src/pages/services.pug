@@ -1,0 +1,114 @@
+extends ../views/layouts/default
+block variables
+    - var title = "Soglasie.ru";
+
+block content
+
+    .c-layout__breadcrumbs._inner
+    .content-center
+        .b-breadcrumbs._inner(itemscope='', itemtype='http://schema.org/BreadcrumbList')
+        ul.b-breadcrumbs__items
+            li.b-breadcrumbs__item
+            span(itemscope='', itemprop='itemListElement', itemtype='http://schema.org/ListItem')
+                a.b-breadcrumbs__link(itemprop='item', href='/', title='Согласие')
+                span(itemprop='name') Согласие
+                meta(itemprop='position', content='0')
+            li.b-breadcrumbs__item
+            span.b-breadcrumbs__current
+                | Все виды онлайн страхования
+    .c-services
+    .content-center
+        .b-services(style='padding: 40px 0')
+        h1.b-services__header Все калькуляторы
+        .b-services__switcher-holder
+            label.b-switcher.b-services__switcher
+            input.b-switcher__input(type='checkbox', name='face', checked='')
+            span.b-switcher__checked-val Физическим лицам
+            span.b-switcher__switcher
+            span.b-switcher__unchecked-val Юридическим лицам
+        .b-services__line-toggler-holder
+            .b-line-toggler.b-services__line-toggler
+            .b-line-toggler__scale-holder
+                ul.b-line-toggler__scale
+                li.b-line-toggler__scale-item
+                    label.b-line-toggler__scale-label
+                    input.b-line-toggler__scale-input(type='radio', value='1', name='faceToggler', checked='')
+                    .b-line-toggler__scale-val Физическим лицам
+                li.b-line-toggler__scale-item
+                    label.b-line-toggler__scale-label
+                    input.b-line-toggler__scale-input(type='radio', value='0', name='faceToggler')
+                    .b-line-toggler__scale-val Юридическим лицам
+        ul.b-services__plates-list.legal
+            li.b-services__plates-item
+            .b-services__plates-header(style="background-image: url('/local/templates/main/assets/images/bg-service-auto.png')")
+                .b-services__wrap-icon
+                img.b-services__icon(src='/local/templates/main/assets/images/svg/icon-service-auto.svg', alt='Авто')
+                a.b-services__more-link(href='/individuals/avto/') Подробнее
+            .b-services__plates-title-wrap
+                .b-services__plates-title Авто
+            .b-services__plates-content
+                a.b-services__plates-link(href='/avto/kalkulyator-kasko/') КАСКО
+                a.b-services__plates-link(href='https://lk.soglasie.ru/') Е-ОСАГО
+                a.b-services__plates-link(href='/avto/kalkulyator-zelenaya-karta/') Зелёная карта
+            li.b-services__plates-item
+            .b-services__plates-header(style="background-image: url('/local/templates/main/assets/images/bg-service-vzr.png')")
+                .b-services__wrap-icon
+                img.b-services__icon(src='/local/templates/main/assets/images/svg/icon-service-put.svg', alt='Путешествия')
+                a.b-services__more-link(href='/individuals/puteshestviya/') Подробнее
+            .b-services__plates-title-wrap
+                .b-services__plates-title Путешествия
+            .b-services__plates-content
+                a.b-services__plates-link(href='/puteshestviya/kalkulyator-strahovaniya-vyezjayushih-za-rubej/') Страхование путешественников
+            li.b-services__plates-item
+            .b-services__plates-header(style="background-image: url('/local/templates/main/assets/images/bg-service-estate.png')")
+                .b-services__wrap-icon
+                img.b-services__icon._small(src='/local/templates/main/assets/images/svg/icon-service-home.svg', alt='Имущество')
+                a.b-services__more-link(href='/individuals/nedvijimost/') Подробнее
+            .b-services__plates-title-wrap
+                .b-services__plates-title Имущество
+            .b-services__plates-content
+                a.b-services__plates-link(href='/nedvijimost/kalkulyator-strahovaniya-kvartiry/') Квартира
+                a.b-services__plates-link(href='/nedvijimost/house/') Дом
+                a.b-services__plates-link(href='/nedvijimost/kalkulyator-grajdanskoj-otvetstvennosti/') Гражданская ответственность
+            li.b-services__plates-item
+            .b-services__plates-header(style="background-image: url('/local/templates/main/assets/images/bg-service-estate-2.png')")
+                .b-services__wrap-icon
+                img.b-services__icon._small(src='/local/templates/main/assets/images/svg/icon-service-key.svg', alt='Жилые помещения')
+                a.b-services__more-link(href='/municipal-insurance/') Подробнее
+            .b-services__plates-title-wrap
+                .b-services__plates-title Жилые помещения
+            .b-services__plates-content
+                a.b-services__plates-link(href='/municipal-insurance/saint-petersburg/') Санкт-Петербург
+                a.b-services__plates-link(href='/municipal-insurance/calc-municipal/') Москва
+            li.b-services__plates-item
+            .b-services__plates-header(style="background-image: url('/local/templates/main/assets/images/bg-service-health.png')")
+                .b-services__wrap-icon
+                img.b-services__icon._small(src='/local/templates/main/assets/images/svg/icon-service-health.svg', alt='Здоровье')
+                a.b-services__more-link(href='/individuals/zdorovje/') Подробнее
+            .b-services__plates-title-wrap
+                .b-services__plates-title Здоровье
+            .b-services__plates-content
+                a.b-services__plates-link(href='/zdorovje/kalkulyator-school-time/') Школьная пора
+                a.b-services__plates-link(href='/zdorovje/kalkulyator-antiklestch/') Антиклещ
+                a.b-services__plates-link(href='/zdorovje/kalkulyator-multisportsmen/') Мультиспортсмен
+                a.b-services__plates-link(href='/zdorovje/best-doctors/') Бест Докторc
+                a.b-services__plates-link(href='/zdorovje/kalkulyator-zdorovje/') Экспресс-Защита
+        ul.b-services__plates-list.b-services__plates-list--hidden.firm
+            li.b-services__plates-item
+            a.b-services__icon-link(href='/firm/cargo/')
+                .b-services__wrap-icon
+                img.b-services__icon(src='/local/templates/main/assets/images/svg/icon-service-cargo.svg', alt='img')
+                .b-services__plates-title-wrap
+                .b-services__plates-title Страхование грузов
+            li.b-services__plates-item
+            a.b-services__icon-link(href='/firm/business/')
+                .b-services__wrap-icon
+                img.b-services__icon(src='/local/templates/main/assets/images/svg/icon-service-business.svg', alt='img')
+                .b-services__plates-title-wrap
+                .b-services__plates-title Бизнес-конструктор
+            li.b-services__plates-item
+            a.b-services__icon-link(href='/firm/specialequip/')
+                .b-services__wrap-icon
+                img.b-services__icon(src='/local/templates/main/assets/images/svg/icon-service-equip.svg', alt='img')
+                .b-services__plates-title-wrap
+                .b-services__plates-title Страхование спецтехники
