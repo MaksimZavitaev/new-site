@@ -130,8 +130,8 @@
                 max = Number.isFinite(max) ? max : 0;
                 this.items.unshift({key: max + 1, type})
             },
-            removeVariable({key}) {
-                this.items.splice(this.items.findIndex(variable => variable.key === key), 1)
+            removeVariable({key, type}) {
+                this.items[type].splice(this.items[type].findIndex(variable => variable.key === key), 1)
             }
         }
     }
