@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\ProductType;
+use DB;
 use Illuminate\Http\Request;
 
 class ProductTypeController extends Controller
@@ -89,7 +90,9 @@ class ProductTypeController extends Controller
      */
     public function destroy(ProductType $productType)
     {
+        DB::transaction();
         $productType->delete();
+        DB::commit();
         return redirect()->route('admin.product-types.index')->withSuccess('Запись успешно удалена');
     }
 }
