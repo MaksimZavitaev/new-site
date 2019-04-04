@@ -12,20 +12,28 @@
         </div>
         <div class="box-body">
             <div class="nav-tabs-custom tab-warning">
-                <ul class="nav nav-tabs">
-                    <li v-for="(title, type) in tabs">
-                        <a :href="`#${type}`" data-toggle="tab" aria-expanded="false">{{ title }}</a>
-                    </li>
-                </ul>
-                <div class="tab-content">
-                    <div v-for="(title, type) in tabs" :id="type" class="tab-pane">
-                        <component
-                            v-for="(item, key) in items[type]"
-                            :key="item.key"
-                            :is="'v-' + item.type"
-                            v-model="items[type][key]"
-                            :page-id="pageId"
-                            @deleted="removeVariable(item)"></component>
+                <div class="col-lg-4 col-md-4">
+                    <div class="box box-warning">
+                        <div class="box-body">
+                            <ul class="nav nav-stacked">
+                                <li v-for="(title, type) in tabs">
+                                    <a :href="`#${type}`" data-toggle="tab" aria-expanded="false">{{ title }}</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="tab-content">
+                        <div v-for="(title, type) in tabs" :id="type" class="tab-pane">
+                            <component
+                                v-for="(item, key) in items[type]"
+                                :key="item.key"
+                                :is="'v-' + item.type"
+                                v-model="items[type][key]"
+                                :page-id="pageId"
+                                @deleted="removeVariable(item)"></component>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -112,7 +120,6 @@
                             })
                             .groupBy('type')
                             .value();
-                        console.log(this.items);
                     })
                     .catch(error => {
                         this.loading = false;
