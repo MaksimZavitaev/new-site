@@ -6,6 +6,7 @@
                 <th>Пользватель</th>
                 <th>Создан</th>
                 <th>Роли</th>
+                <th style="width: 10px"></th>
             @endslot
 
             @foreach($users as $user)
@@ -24,12 +25,47 @@
                             Ничего
                         @endforelse
                     </td>
-                    {{--<td>
-                        <a href="{{ route('admin.users.destroy', $user) }}"><i class="fa fa-trash-o text-danger"></i></a>
-                    </td>--}}
+                    <td>
+                        {!! Form::model($user, ['method' => 'DELETE', 'route' => ['admin.users.destroy', $user], 'class' => 'form-inline']) !!}
+                        {!! Form::button('<i class="fa fa-trash" aria-hidden="true"></i>',
+                        [
+                            'class' => 'btn btn-xs btn-danger',
+                            'type' => 'submit'
+                        ]) !!}
+                        {!! Form::close() !!}
+                    </td>
                 </tr>
             @endforeach
         @endcomponent
         <!-- /.box -->
     </div>
 </div>
+
+@push('scripts')
+    <script>
+        $('button.btn-danger').click(function (e) {
+            e.preventDefault();
+            var el = $(e.currentTarget);
+            var icon = el.children();
+            var form = el.parent();
+            icon.removeClass('fa-trash');
+            icon.addClass('fa-spinner fa-pulse');
+            Swal.fire({
+                title: 'Вы уверены?',
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Да, удалить!',
+                cancelButtonText: 'Отмена',
+            }).then(function (result) {
+                if (result.value) {
+                    form.submit();
+                    return;
+                }
+                icon.removeClass('fa-spinner fa-pulse');
+                icon.addClass('fa-trash');
+            });
+        });
+    </script>
+@endpush

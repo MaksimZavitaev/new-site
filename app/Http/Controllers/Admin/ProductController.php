@@ -33,7 +33,7 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param \Illuminate\Http\Request $request
      *
      * @return \Illuminate\Http\Response
      */
@@ -71,7 +71,7 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param \Illuminate\Http\Request $request
      * @param Product $product
      *
      * @return void
@@ -88,9 +88,11 @@ class ProductController extends Controller
      * @param Product $product
      *
      * @return void
+     * @throws \Exception
      */
     public function destroy(Product $product)
     {
-        //
+        $product->delete();
+        return redirect()->route('admin.products.index')->withSuccess('Запись успешно удалена');
     }
 }

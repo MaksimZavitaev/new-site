@@ -24,7 +24,7 @@
     <div class="box-body table-responsive no-padding">
         <div class="table-responsive">
             <table class="table table-hover table-condensed">
-                <tr>{{$header}}</tr>
+                <thead>{{$header}}</thead>
 
                 {{$slot}}
             </table>

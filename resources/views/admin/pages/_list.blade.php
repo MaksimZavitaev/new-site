@@ -54,7 +54,7 @@
                         <th>Создано</th>
                         <th>Обновлено</th>
                         <th>Состояние</th>
-                        <th></th>
+                        <th style="width: 10px"></th>
                     </tr>
                 @endslot
                 {{-- TODO: Create LevelUp Link --}}
@@ -102,12 +102,10 @@
                         </td>
                         <td>
                             @if(!$page->isHome() && !$page->trashed())
-                                {!! Form::model($page, ['method' => 'DELETE', 'route' => ['admin.pages.destroy', $page], 'class' => 'form-inline', 'data-confirm' => 'Удалить?']) !!}
+                                {!! Form::model($page, ['method' => 'DELETE', 'route' => ['admin.pages.destroy', $page], 'class' => 'form-inline']) !!}
                                 {!! Form::button('<i class="fa fa-trash" aria-hidden="true"></i>',
                                 [
-                                    'onclick' => 'if (!confirm("Вы уверены?")) { return false }',
                                     'class' => 'btn btn-xs btn-danger',
-                                    'name' => 'submit',
                                     'type' => 'submit'
                                 ]) !!}
                                 {!! Form::close() !!}
@@ -119,3 +117,32 @@
         </div>
     </div>
 </div>
+
+@push('scripts')
+    <script>
+        $('button.btn-danger').click(function (e) {
+            e.preventDefault();
+            var el = $(e.currentTarget);
+            var icon = el.children();
+            var form = el.parent();
+            icon.removeClass('fa-trash');
+            icon.addClass('fa-spinner fa-pulse');
+            Swal.fire({
+                title: 'Вы уверены?',
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Да, удалить!',
+                cancelButtonText: 'Отмена',
+            }).then(function (result) {
+                if (result.value) {
+                    form.submit();
+                    return;
+                }
+                icon.removeClass('fa-spinner fa-pulse');
+                icon.addClass('fa-trash');
+            });
+        });
+    </script>
+@endpush

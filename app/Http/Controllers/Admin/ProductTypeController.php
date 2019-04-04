@@ -82,12 +82,14 @@ class ProductTypeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\ProductType $productType
+     * @param \App\Models\ProductType $productType
      *
      * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
     public function destroy(ProductType $productType)
     {
-        //
+        $productType->delete();
+        return redirect()->route('admin.product-types.index')->withSuccess('Запись успешно удалена');
     }
 }

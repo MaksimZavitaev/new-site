@@ -35,7 +35,7 @@ class FormController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param \Illuminate\Http\Request $request
      *
      * @return \Illuminate\Http\Response
      */
@@ -48,7 +48,7 @@ class FormController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  Form $form
+     * @param Form $form
      *
      * @return \Illuminate\Http\Response
      */
@@ -60,7 +60,7 @@ class FormController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  Form $form
+     * @param Form $form
      *
      * @return \Illuminate\Http\Response
      */
@@ -73,8 +73,8 @@ class FormController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  Form $form
+     * @param \Illuminate\Http\Request $request
+     * @param Form $form
      *
      * @return \Illuminate\Http\Response
      */
@@ -87,12 +87,14 @@ class FormController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  Form $form
+     * @param Form $form
      *
      * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
     public function destroy(Form $form)
     {
-        //
+        $form->delete();
+        return redirect()->route('admin.forms.index')->withSuccess('Запись успешно удалена');
     }
 }
