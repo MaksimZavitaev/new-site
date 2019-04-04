@@ -201,7 +201,7 @@ export default {
                     return;
                 }
 
-                if (this.$parent.items.some(item => item.key === val)) {
+                if (_.values(this.$parent.items).flatMap(i => i).some(item => item.key === val)) {
                     this.broadcast('KeyInput', 'handleError', 'Ключ уже используется другой переменной');
                 } else {
                     this.broadcast('KeyInput', 'handleError', false);
