@@ -1,6 +1,5 @@
 <template>
-    <box title="Строка"
-         :name="item.key"
+    <box :name="item.key"
          :is-new="!item.id"
          :in-list="inList"
          :processing="processing"

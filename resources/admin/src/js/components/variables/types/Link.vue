@@ -1,6 +1,5 @@
 <template>
-    <box title="Ссылка"
-         :name="item.key"
+    <box :name="item.key"
          :is-new="!item.id"
          :in-list="inList"
          :processing="processing"
