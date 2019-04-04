@@ -51,6 +51,7 @@
             icon.addClass('fa-spinner fa-pulse');
             Swal.fire({
                 title: 'Вы уверены?',
+                text: 'Удаление записи приведет к удалению зависящих от нее продуктов!',
                 type: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
