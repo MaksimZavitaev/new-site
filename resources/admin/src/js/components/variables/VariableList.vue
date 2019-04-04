@@ -26,13 +26,24 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="tab-content">
                         <div v-for="(title, type) in tabs" :id="type" class="tab-pane">
-                            <component
-                                v-for="(item, key) in items[type]"
-                                :key="item.key"
-                                :is="'v-' + item.type"
-                                v-model="items[type][key]"
-                                :page-id="pageId"
-                                @deleted="removeVariable(item)"></component>
+                            <div class="box box-warning">
+                                <div class="box-header">
+                                    <div class="box-tools">
+                                        <button class="btn btn-xs" @click="addVariable(type)">
+                                            Добавить
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="box-body">
+                                    <component
+                                        v-for="(item, key) in items[type]"
+                                        :key="item.key"
+                                        :is="'v-' + item.type"
+                                        v-model="items[type][key]"
+                                        :page-id="pageId"
+                                        @deleted="removeVariable(item)"></component>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -94,32 +105,36 @@
                 axios.get(`/admin/pages/${this.pageId}/variables`)
                     .then(({data}) => {
                         this.loading = false;
-                        this.items = _.chain(data)
-                            .groupBy('key')
-                            .toPairs()
-                            .map((data) => {
-                                let [key, item] = data;
-                                if (item.length > 0) {
-                                    const {data, ...first} = item[0];
-                                    if (!first.is_list)
-                                        return {
-                                            ...data,
-                                            ...first
-                                        };
+                        this.items = _.mapValues({...this.tabs}, () => []);
+                        this.items = {
+                            ...this.items,
+                            ..._.chain(data)
+                                .groupBy('key')
+                                .toPairs()
+                                .map((data) => {
+                                    let [key, item] = data;
+                                    if (item.length > 0) {
+                                        const {data, ...first} = item[0];
+                                        if (!first.is_list)
+                                            return {
+                                                ...data,
+                                                ...first
+                                            };
 
-                                    return {
-                                        ...first,
-                                        type: 'list',
-                                        itemsType: first.type,
-                                        items: item.map(item => {
-                                            let {data, ...fields} = item;
-                                            return {...data, ...fields};
-                                        })
+                                        return {
+                                            ...first,
+                                            type: 'list',
+                                            itemsType: first.type,
+                                            items: item.map(item => {
+                                                let {data, ...fields} = item;
+                                                return {...data, ...fields};
+                                            })
+                                        }
                                     }
-                                }
-                            })
-                            .groupBy('type')
-                            .value();
+                                })
+                                .groupBy('type')
+                                .value()
+                        };
                     })
                     .catch(error => {
                         this.loading = false;
@@ -133,9 +148,9 @@
                     })
             },
             addVariable(type) {
-                let max = Math.max.apply(Math, this.items.map(i => (typeof i.key === 'string') ? 0 : i.key));
+                let max = Math.max.apply(Math, _.values(this.items).flatMap(i => i).map(i => (typeof i.key === 'string') ? 0 : i.key));
                 max = Number.isFinite(max) ? max : 0;
-                this.items.unshift({key: max + 1, type})
+                this.items[type].unshift({key: max + 1, type})
             },
             removeVariable({key, type}) {
                 this.items[type].splice(this.items[type].findIndex(variable => variable.key === key), 1)
