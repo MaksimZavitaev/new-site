@@ -1,6 +1,5 @@
 <template>
-    <box title="Список"
-         :name="item.key"
+    <box :name="item.key"
          :is-new="!item.id"
          :processing="processing"
          :changed="changed"

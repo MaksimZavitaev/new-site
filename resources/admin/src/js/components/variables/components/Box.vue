@@ -2,8 +2,7 @@
     <div class="box box-warning" :class="{'collapsed-box': !isNew && !inList && collapsed}" @keyup.ctrl.enter="submit">
         <div class="box-header" @click="collapsed = !collapsed">
             <h3 class="box-title" v-if="!inList">
-                {{ title }}
-                <small>({{ name }})</small>
+                {{ name }}
             </h3>
             <i class="fa fa-arrows-v" style="font-size: 12px;" v-else></i>
             <div class="box-tools">
@@ -35,9 +34,6 @@
             DeleteButton
         },
         props: {
-            title: {
-                type: String,
-            },
             name: {},
             isList: {
                 type: Boolean,
