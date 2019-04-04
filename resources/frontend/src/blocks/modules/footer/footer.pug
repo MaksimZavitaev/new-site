@@ -1,0 +1,306 @@
+footer
+  .b-footer
+    .b-footer__search
+      .b-smart-search
+        .b-smart-search__plate
+          .content-center
+            form.b-smart-search__input-holder(action='/search/')
+              input.b-smart-search__input(type='text', name='q', placeholder='Не нашли, что искали? Воспользуйтесь умным поиском...')
+              label.b-smart-search__submit
+                input(type='submit', value='Отправить')
+            .b-smart-search__examples-holder
+              span.b-smart-search__examples-label
+                | К
+                | примеру:
+              a.b-smart-search__examples-item(href='/search/?q=ОСАГО') ОСАГО
+              | ,
+              a.b-smart-search__examples-item(href='/search/?q=КАСКО') КАСКО
+              | ,
+              a.b-smart-search__examples-item(href='/search/?q=ВЗР') ВЗР
+    .b-footer__links
+      .content-center
+        .b-column-menu__first-holder
+          ul.b-column-menu__first-level
+            li.b-column-menu__first-item
+              a.b-column-menu__first-link(href='/individuals/avto/') Авто
+              .b-column-menu__second-holder
+                ul.b-column-menu__second-level
+                  li.b-column-menu__second-item
+                    a.b-column-menu__second-link(href='/individuals/avto/kasko/') КАСКО
+                  li.b-column-menu__second-item
+                    a.b-column-menu__second-link(href='/individuals/avto/osago/') ОСАГО
+                  li.b-column-menu__second-item
+                    a.b-column-menu__second-link(href='/individuals/avto/zelenaya-karta/') Зеленая карта
+            li.b-column-menu__first-item
+              a.b-column-menu__first-link(href='/individuals/zdorovje/') Здоровье
+              .b-column-menu__second-holder
+                ul.b-column-menu__second-level
+                  li.b-column-menu__second-item
+                    a.b-column-menu__second-link(href='/individuals/zdorovje/strakhovanie-shkolnikov/')
+                      | Страхование
+                      | школьников
+                  li.b-column-menu__second-item
+                    a.b-column-menu__second-link(href='/individuals/zdorovje/neschastnye-sluchai/')
+                      | Страхование от несчастных
+                      | случаев
+                  li.b-column-menu__second-item
+                    a.b-column-menu__second-link(href='/individuals/zdorovje/strakhovanie-ot-kleshchevogo-entsefalita/')
+                      | Страхование
+                      | от
+                      | клещевого энцефалита
+                  li.b-column-menu__second-item
+                    a.b-column-menu__second-link(href='/individuals/zdorovje/strakhovanie-multisportsmen/') Мультиспортсмен
+            li.b-column-menu__first-item
+              a.b-column-menu__first-link(href='/individuals/nedvijimost/') Имущество
+              .b-column-menu__second-holder
+                ul.b-column-menu__second-level
+                  li.b-column-menu__second-item
+                    a.b-column-menu__second-link(href='/individuals/nedvijimost/produkt/') Недвижимость
+                  li.b-column-menu__second-item
+                    a.b-column-menu__second-link(href='/individuals/nedvijimost/strakhovanie-ipoteki/') Ипотека
+                  li.b-column-menu__second-item
+                    a.b-column-menu__second-link(href='/municipal-insurance/')
+                      | Муниципальное
+                      | страхование
+                  li.b-column-menu__second-item
+                    a.b-column-menu__second-link(href='/nedvijimost/kalkulyator-strahovaniya-kvartiry/')
+                      | Страхование
+                      | квартиры
+                  li.b-column-menu__second-item
+                    a.b-column-menu__second-link(href='/individuals/nedvijimost/strakhovanie-zagorodnogo-doma/')
+                      | Страхование
+                      | дома
+                  li.b-column-menu__second-item
+                    a.b-column-menu__second-link(href='/individuals/nedvijimost/strakhovanie-grazhdanskoy-otvetstvennosti/')
+                      | Гражданская
+                      | ответственность
+                  li.b-column-menu__second-item
+                    a.b-column-menu__second-link(href='/individuals/nedvijimost/strakhovanie-malomernykh-sudov/')
+                      | Маломерные
+                      | суда
+            li.b-column-menu__first-item
+              a.b-column-menu__first-link(href='/individuals/puteshestviya/') Путешествие
+              .b-column-menu__second-holder
+                ul.b-column-menu__second-level
+                  li.b-column-menu__second-item
+                    a.b-column-menu__second-link(href='/individuals/puteshestviya/')
+                      | Страхование
+                      | путешественников
+              a.b-column-menu__first-link(href='/company/') О компании
+              .b-column-menu__second-holder
+                ul.b-column-menu__second-level
+                  li.b-column-menu__second-item
+                    a.b-column-menu__second-link(href='/company/insurance-rules/')
+                      | Правила
+                      | страхования
+                  li.b-column-menu__second-item
+                    a.b-column-menu__second-link(href='/promotions/') Акции
+                  li.b-column-menu__second-item
+                    a.b-column-menu__second-link(href='/company/vacancy/') Вакансии
+                  li.b-column-menu__second-item
+                    a.b-column-menu__second-link(href='/offices/all/') Контакты
+    .b-footer__contacts
+      .content-center
+        .b-footer__cols
+          .b-footer__contacts-col
+            .b-footer__logo
+              img(src='/local/templates/main/assets/images/logo-footer.png', alt='Страховая компания Согласие')
+          .b-footer__contacts-col
+            .b-phone-city._dark
+              .b-phone-city__number-holder
+                a.b-phone-city__number(href='tel:88007550001')
+                  | 8 800
+                  | 755 00
+                  | 01
+              .b-phone-city__option-holder
+                a.b-phone-city__option.b-phone-city__option_arrowed.js-modal(data-href='#select-city-global-popup')
+                  | Москва
+          .b-footer__contacts-col
+            .b-phone-city._dark
+              .b-phone-city__number-holder
+                a.b-phone-city__number(href='tel:+74957390101')
+                  | +7 495 739 01 01
+              .b-phone-city__option-holder
+                a.b-phone-city__option(href='/offices/list/')
+                  | Офисы
+          .b-footer__contacts-col
+            a.b-footer__feedback.button-gray.js-modal(data-href='#question-spec-request')
+              | Обратная
+              | связь
+    .b-footer__additional
+      .content-center
+        .b-footer__additional-col
+          .b-footer__additional-items._mb-none
+            p.b-footer__additional-item._not-hover © 1993 - 2019 ООО «СК «Согласие»
+            p.b-footer__additional-item._not-hover
+              | Лицензия ЦБ РФ от 25.05.2015 СИ № 1307, СЛ
+              | №
+              | 1307, ОС № 1307–03, ОС № 1307–04, ОС № 1307–05, ПС
+              | № 1307
+          .b-footer__additional-items
+            a.b-footer__additional-item._middle-font._white-font(href='/upload/Terms_of_use.pdf') Пользовательское соглашение
+            a.b-footer__additional-item._middle-font._white-font(href='/company/requisites/')
+              | Банковские
+              | реквизиты
+            a.b-footer__additional-item._middle-font._white-font(href='/sitemap/') Карта сайта
+            a.b-footer__additional-item._middle-font._white-font(href='/fraud/')
+              | Противодействие
+              | мошенничеству
+            a.b-footer__additional-item._middle-font._white-font(href='/en/') English
+        .b-footer__mobapp-col
+          a.b-link-service.b-link-service--google(href='https://play.google.com/store/apps/details?id=ru.soglasie.client&hl=ru')
+          a.b-link-service.b-link-service--appstore(href='https://itunes.apple.com/ru/app/%D1%81%D0%BE%D0%B3%D0%BB%D0%B0%D1%81%D0%B8%D0%B5-%D1%81%D1%82%D1%80%D0%B0%D1%85%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5/id1354977787?mt=8')
+        .b-footer__socials
+          .item.social.social_footer
+            a.b-footer__subscribe.js-modal(data-href='#subscribe-form') Подписка на новости
+            a.b-footer__subscribe(href='https://www.cbr.ru/', style='margin-left: 15px;', target='_blank') Центральный банк РФ
+            a.b-footer__subscribe(href='/company/raskrytie-informatsii/', style='margin-left: 15px;') Раскрытие информации
+            a.b-footer__subscribe(href='mailto:info@soglasie.ru', style='margin-left: 15px;') info@soglasie.ru
+        .b-footer__icons-block
+          .b-footer__pays-ico.b-footer__pays-ico--left.b-footer__pays-ico--mt5
+          .b-footer__social.b-footer__social--right
+            .b-footer__social-item
+              a.b-footer__social-link(target='_blank', href='https://vk.com/soglasie_sk')
+                span.ico-vk
+            .b-footer__social-item
+              a.b-footer__social-link(target='_blank', href='https://www.facebook.com/soglasie.sk')
+                span.ico-fb
+            .b-footer__social-item
+              a.b-footer__social-link(target='_blank', href='https://ok.ru/sk.soglasie')
+                span.ico-ok
+            .b-footer__social-item
+              a.b-footer__social-link(target='_blank', href='https://twitter.com/soglasie_sk')
+                span.ico-tw
+            .b-footer__social-item
+              a.b-footer__social-link(target='_blank', href='https://www.youtube.com/channel/UCV2qMrP5Q5joEpmsB6yVaBw')
+                span.ico-yt
+            .b-footer__social-item
+              a.b-footer__social-link(target='_blank', href='https://www.instagram.com/sk_soglasie/')
+                span.ico-ig
+.b-to-top
+#question-spec-request.b-form-modal.iblock._hidden
+  .b-form-modal__plate
+    .b-form-modal__form.u-mask-scope
+      form.use_form_ajax.add-form.u-mask-scope(name='ib_53', action='/local/ajax/form/MainQuestion.php', method='post')
+        input#ib_53_session(type='hidden', name='ib_53_session', value='8b30637fd15eddaa59e74b706ed41698')
+        input(type='hidden', name='g-recaptcha-response')
+        .b-form-modal__title Вопрос специалисту
+        .b-form-modal__body
+          input.b-text-input__input._bigger(type='hidden', name='ib_53[NAME][0][VALUE]', value='Вопрос специалисту от 04.04.2019 11:35')
+          .b-form-modal__input-holder.u-mask-field
+            .b-text-input.iblock
+              select.b-text-input__select.select2(data-label='Тема вопроса', name='ib_53[85][][VALUE]')
+                option(value='') -
+                option(value='34', selected='selected') Общие
+                option(value='35') Один из видов страхования
+                option(value='36') Пролонгация полиса
+                option(value='37') Расторжение полиса
+                option(value='38') Внесение изменений в полис
+                option(value='39') Урегулирование убытка
+                option(value='40') Иное
+          .b-form-modal__input-holder.u-mask-field
+            .b-text-input.iblock
+              input.b-text-input__input._bigger(type='email', data-label='Адрес электронной почты', name='ib_53[84][0][VALUE]', value='', data-required='data-required')
+          .b-form-modal__input-holder.u-mask-field
+            .b-text-input.iblock
+              textarea.b-text-input__input.b-text-input__textarea._bigger(data-label='Текст вопроса', name='ib_53[PREVIEW_TEXT][0][VALUE]', data-required='data-required')
+          .b-form-modal__columns
+            .b-form-modal__column._col-2
+              .b-form-modal__input-holder.cnt-0
+                .b-text-input.iblock(data-formats='pdf|doc|docx|jpeg|png|jpg')
+                  .b-text-input__file.b-text-input__file_theme-2
+                    span
+                      | Прикрепить
+                      | файл
+                    input.t-F(type='file', name='ib_53[86][0][VALUE]')
+          .b-calc-form__field.b-form-modal__input-holder.u-mask-field._personal
+            label.b-checkbox
+              input.b-checkbox__input(type='checkbox', name='test', data-required='')
+              span.b-checkbox__icon
+              span.b-checkbox__content
+                span.b-checkbox__text
+                  | Подтверждаю
+                  a(href='/upload/Terms_of_use.pdf', target='_blank') согласие на обработку моих персональных данных
+            .b-calc-form__field-error Согласие обязательно
+          .b-form-modal__columns
+            .b-form-modal__column._col-2
+              .b-form-modal__submit-holder
+                button.button-filled.b-form-modal__submit Отправить
+          input.trap-text(type='text', name='email', value='')
+        .b-form-notes._mt30
+          | This site is protected by reCAPTCHA and the Google
+          a.b-form-notes__link(href='https://policies.google.com/privacy', target='_blank') Privacy Policy
+          |  and
+          a.b-form-notes__link(href='https://policies.google.com/terms', target='_blank')
+            | Terms of
+            | Service
+          |                     apply
+    .b-form-modal__thanks-modal
+      .b-form-modal__title Благодарим за обращение
+      .b-form-modal__thanks-holder
+        .b-form-modal__thanks-icon
+        .b-form-modal__thanks-text Мы направим ответ на указанный вами e-mail.
+.b-header__beta-modal
+  #beta-request.b-form-modal.iblock
+    .b-form-modal__plate
+      .b-form-modal__form.u-mask-scope
+        form.use_form_ajax.add-form.u-mask-scope(name='ib_39', action='/local/ajax/form/new_feedback.php', method='post')
+          input#ib_39_session_1(type='hidden', name='ib_39_session', value='8b30637fd15eddaa59e74b706ed41698')
+          input(type='hidden', name='g-recaptcha-response')
+          input.b-order-form__field-input(type='hidden', name='ib_39[NAME][0][VALUE]', value='Отзыв от 04.04.2019 11:35', data-required='data-required')
+          .b-order-form__field-none
+            | Ваш отзыв
+          .b-form-modal__title Что вы думаете о новом сайте?
+          .b-form-modal__body
+            .b-form-modal__input-holder.u-mask-field
+              textarea.u-textarea.b-form-modal__textarea(placeholder='Ваш отзыв', name='ib_39[PREVIEW_TEXT][0][VALUE]', data-required='data-required')
+            .b-form-modal__submit-holder
+              input.button-filled.b-form-modal__submit(type='submit', value='ОТПРАВИТЬ')
+          input.trap-text(type='text', name='email', value='')
+          .b-form-notes._mt30
+            | This site is protected by reCAPTCHA and the Google
+            a.b-form-notes__link(href='https://policies.google.com/privacy', target='_blank') Privacy Policy
+            |  and
+            a.b-form-notes__link(href='https://policies.google.com/terms', target='_blank')
+              | Terms of
+              | Service
+            |  apply
+      .b-form-modal__thanks-modal
+        .b-form-modal__title Благодарим за отзыв
+        .b-form-modal__thanks-holder
+          .b-form-modal__thanks-icon
+          .b-form-modal__thanks-text Ваш отзыв очень важен для нас!
+#subscribe-form.b-form-subscribe.b-form-subscribe_hidden
+  .b-form-subscribe__form-wrapper
+    .b-form-subscribe__title  Подписаться на новости
+    form(action='/subscribe_edit')
+      .b-form-subscribe__input-area
+        .b-text-input.iblock
+          input.b-text-input__input(type='email', name='sf_EMAIL', size='20', value='')
+          .b-text-input__fakeholder
+      .b-form-subscribe__input-area
+        label.b-checkbox
+          input.b-checkbox__input(type='checkbox', name='confirm')
+          span.b-checkbox__icon
+          span.b-checkbox__content
+            span.b-checkbox__text
+              | Подтверждаю
+              a(href='/upload/Terms_of_use.pdf', target='_blank')
+                | согласие
+                | на обработку моих персональных данных
+        .b-form-subscribe__field-error.b-form-subscribe_hidden
+      .b-form-subscribe__input-area
+        input.button-filled(type='submit', name='OK', value='Подписаться')
+      .b-form-notes._mt30
+        | This site is protected by reCAPTCHA and the Google
+        a.b-form-notes__link(href='https://policies.google.com/privacy', target='_blank') Privacy Policy
+        |  and
+        a.b-form-notes__link(href='https://policies.google.com/terms', target='_blank')
+          | Terms of
+          | Service
+        |                 apply
+  .b-form-subscribe__success.b-form-subscribe_hidden
+    .b-request-confirm
+      .b-request-confirm__plate
+        .b-request-confirm__caption Спасибо
+        .b-request-confirm__intro Вам на почту придет письмо с подтверждением подписки
