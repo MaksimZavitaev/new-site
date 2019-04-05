@@ -18,12 +18,12 @@
         </div>
         <div class="row" v-else>
             <div class="col-md-12">
-                <draggable v-model="item.items" :options="{handle: '.box-header'}">
+                <draggable v-model="items" handle=".box-header" @sort="sort">
                     <component
-                        v-for="(el, key) in item.items"
-                        :key="key"
+                        v-for="(el, key) in items"
+                        :key="el.id"
                         :is="'v-' + item.itemsType"
-                        v-model="item.items[key]"
+                        v-model="items[key]"
                         :page-id="pageId"
                         :in-list="true"
                         @submitElement="submitElement"
@@ -174,6 +174,30 @@
                     item.variable_id = this.item.variable_id;
                     return item;
                 });
+            },
+            sort(e) {
+            }
+        },
+        computed: {
+            items: {
+                get() {
+                    return _.sortBy(this.item.items, ['sort']);
+                },
+                set(val) {
+                    this.$set(this.item, 'items', _.map(val, (el, i) => {
+                        el.sort = i;
+                        return el;
+                    }));
+                    let data = _.map(val, el => ({[el.id]: el.sort}));
+                    this.processing = true;
+                    axios.put(`${this.endpoint}/sort`, data)
+                        .then(res => {
+                            this.processing = false;
+                        })
+                        .catch(error => {
+                            this.processing = false;
+                        });
+                }
             }
         },
         watch: {

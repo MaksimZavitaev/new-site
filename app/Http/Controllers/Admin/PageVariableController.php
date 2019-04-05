@@ -45,6 +45,21 @@ class PageVariableController extends Controller
         return new VariableResource($variable);
     }
 
+    public function updateSort(Request $request)
+    {
+        $collect = collect($request->all())->mapWithKeys(function ($item) {
+            return $item;
+        });
+        $variables = Variable::whereIn('id', $collect->keys())->get();
+
+        DB::transaction(function () use ($variables, $collect) {
+            foreach ($variables as $variable) {
+                $variable->sort = $collect[$variable->id];
+                $variable->save();
+            }
+        });
+    }
+
     /**
      * @param Request $request
      * @param string $page

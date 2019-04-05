@@ -37,6 +37,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::resource('variables', 'PageVariableController')->only(['index', 'show', 'store', 'update', 'destroy']);
         Route::group(['prefix' => 'variables/list', 'as' => 'list.'], function () {
             Route::post('', 'PageVariableController@storeList')->name('store');
+            Route::put('sort', 'PageVariableController@updateSort');
             Route::put('{id}', 'PageVariableController@updateList')->name('update');
             Route::delete('{id}', 'PageVariableController@destroyList')->name('destroy');
         });
