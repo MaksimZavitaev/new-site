@@ -7,6 +7,7 @@ use Eloquent;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Collection;
 
 /**
  * Class Page
@@ -119,7 +120,7 @@ class Page extends Model
         return array2object($variables->toArray());
     }
 
-    public function getVariablesFlatMap()
+    public function getVariablesFlatMap(): Collection
     {
         return $this
             ->variables

@@ -14,7 +14,10 @@ class PageVariableController extends Controller
 {
     public function index(Request $request, $page)
     {
-        return Page::find($page)->getVariablesFlatMap();
+        return Page::findOrFail($page)
+            ->getVariablesFlatMap()
+            ->sortBy('sort')
+            ->values();
     }
 
     public function show(Request $request, $page, $key)

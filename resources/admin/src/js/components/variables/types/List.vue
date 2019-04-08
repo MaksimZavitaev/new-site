@@ -181,7 +181,7 @@
         computed: {
             items: {
                 get() {
-                    return _.sortBy(this.item.items, ['sort']);
+                    return this.item.items;
                 },
                 set(val) {
                     this.$set(this.item, 'items', _.map(val, (el, i) => {
