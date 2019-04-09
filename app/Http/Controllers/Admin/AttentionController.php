@@ -83,12 +83,14 @@ class AttentionController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param int $id
+     * @param Attention $attention
      *
-     * @return \Illuminate\Http\Response
+     * @return void
+     * @throws \Exception
      */
-    public function destroy($id)
+    public function destroy(Attention $attention)
     {
-        //
+        $attention->delete();
+        return redirect()->route('admin.attentions.index')->whthSuccess('Успешно удалено');
     }
 }
