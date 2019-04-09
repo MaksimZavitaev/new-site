@@ -57,13 +57,13 @@ class AttentionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param int $id
+     * @param Attention $attention
      *
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Attention $attention)
     {
-        //
+        return view('admin.attentions.edit', compact('attention'));
     }
 
     /**
