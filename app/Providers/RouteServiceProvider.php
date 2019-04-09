@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use Illuminate\Routing\Events\RouteMatched;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+use Symfony\Component\HttpFoundation\AcceptHeader;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -69,7 +71,7 @@ class RouteServiceProvider extends ServiceProvider
     {
         Route::prefix('api')
              ->middleware('api')
-             ->namespace($this->namespace)
+             ->namespace($this->namespace . "\API")
              ->group(base_path('routes/api.php'));
     }
 
