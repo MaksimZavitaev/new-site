@@ -66,6 +66,14 @@
                     </li>
                     @endhasrole
                     @hasrole('administrator')
+                    <li class="{{ request()->route()->named('admin.attentions.*') ? 'active' : '' }}">
+                        <a href="{{ route('admin.attentions.index') }}">
+                            <i class="fa fa-sticky-note-o"></i>
+                            <span>Уведомления</span>
+                        </a>
+                    </li>
+                    @endhasrole
+                    @hasrole('administrator')
                     <li class="header">Администрирование</li>
                     <li class="{{ request()->route()->named('admin.users.*') ? 'active' : '' }}">
                         <a href="{{ route('admin.users.index') }}">

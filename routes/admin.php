@@ -21,6 +21,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('products', 'ProductController');
     Route::resource('forms', 'FormController');
     Route::resource('applications', 'ApplicationController');
+    Route::resource('attentions', 'AttentionController');
 
     if (env('APP_ENV') !== 'production') {
         Route::group(['prefix' => 'backups', 'as' => 'backups.'], function () {

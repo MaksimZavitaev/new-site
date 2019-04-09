@@ -61,3 +61,6 @@ Breadcrumbs::resource('admin.applications', 'Заявки');
 
 // Главная > Резервные копии
 Breadcrumbs::resource('admin.backups', 'Резервные копии');
+
+// Главная > Уведомления
+Breadcrumbs::resource('admin.attentions', 'Уведомления');

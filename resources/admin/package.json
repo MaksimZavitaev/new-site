@@ -14,6 +14,7 @@
         "axios": "^0.18",
         "bootstrap-sass": "^3.4.1",
         "cross-env": "^5.1",
+        "daterangepicker": "^3.0.3",
         "font-awesome": "^4.7.0",
         "icheck": "^1.0.2",
         "inputmask": "^4.0.6",
