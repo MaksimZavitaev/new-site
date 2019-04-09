@@ -36,3 +36,32 @@
         @endcomponent
     </div>
 </div>
+
+@push('scripts')
+    <script>
+        $('button.btn-danger').click(function (e) {
+            e.preventDefault();
+            var el = $(e.currentTarget);
+            var icon = el.children();
+            var form = el.parent();
+            icon.removeClass('fa-trash');
+            icon.addClass('fa-spinner fa-pulse');
+            Swal.fire({
+                title: 'Вы уверены?',
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Да, удалить!',
+                cancelButtonText: 'Отмена',
+            }).then(function (result) {
+                if (result.value) {
+                    form.submit();
+                    return;
+                }
+                icon.removeClass('fa-spinner fa-pulse');
+                icon.addClass('fa-trash');
+            });
+        });
+    </script>
+@endpush
