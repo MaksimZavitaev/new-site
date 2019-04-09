@@ -78,7 +78,7 @@ class AttentionController extends Controller
     public function update(Request $request, Attention $attention)
     {
         $attention->update($request->all());
-        return redirect()->route('admin.attentions.edit', $attention)->whthSuccess('Данные успешно изменены');
+        return redirect()->route('admin.attentions.edit', $attention)->withSuccess('Данные успешно изменены');
     }
 
     /**
@@ -92,6 +92,6 @@ class AttentionController extends Controller
     public function destroy(Attention $attention)
     {
         $attention->delete();
-        return redirect()->route('admin.attentions.index')->whthSuccess('Успешно удалено');
+        return redirect()->route('admin.attentions.index')->withSuccess('Успешно удалено');
     }
 }
