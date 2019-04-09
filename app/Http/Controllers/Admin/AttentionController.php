@@ -27,7 +27,7 @@ class AttentionController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.attentions.create');
     }
 
     /**
@@ -39,7 +39,8 @@ class AttentionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $attention = Attention::create($request->all());
+        return redirect()->route('admin.attentions.edit', $attention)->withSuccess('Данные успешно изменены');
     }
 
     /**
