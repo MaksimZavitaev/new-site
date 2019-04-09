@@ -7,7 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
-class PageController extends Controller
+class PageController extends PublicController
 {
     /**
      * Handle the incoming request.

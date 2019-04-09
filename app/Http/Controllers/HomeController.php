@@ -6,7 +6,7 @@ use App\Models\Page;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
+class HomeController extends PublicController
 {
     public function __invoke()
     {
