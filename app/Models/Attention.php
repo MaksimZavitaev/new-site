@@ -10,6 +10,14 @@ class Attention extends Model
 {
     public $timestamps = false;
 
+    protected $fillable = [
+        'active',
+        'title',
+        'content',
+        'started_at',
+        'ended_at',
+    ];
+
     public function scopeActive(Builder $query)
     {
         return $query->where('active', true);

@@ -70,13 +70,14 @@ class AttentionController extends Controller
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @param int $id
+     * @param Attention $attention
      *
-     * @return \Illuminate\Http\Response
+     * @return void
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Attention $attention)
     {
-        //
+        $attention->update($request->all());
+        return redirect()->route('admin.attentions.edit', $attention)->whthSuccess('Данные успешно изменены');
     }
 
     /**

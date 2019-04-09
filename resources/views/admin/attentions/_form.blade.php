@@ -27,6 +27,8 @@
                 'id'    => 'dates',
                 'class' => 'form-control' . ($errors->has('dates') ? ' is-invalid' : ''),
                 'required']) !!}
+                {!! Form::hidden('started_at', null, ['id' => 'started_at']) !!}
+                {!! Form::hidden('ended_at', null, ['id' => 'ended_at']) !!}
             </div>
         </div>
     </div>
@@ -49,6 +51,13 @@
 @push('scripts')
     <script>
         //Date range picker with time picker
-        $('#dates').daterangepicker({timePicker: true, timePickerIncrement: 30, format: 'MM/DD/YYYY h:mm A'})
+        $('#dates').daterangepicker({
+            timePicker: true,
+            timePickerIncrement: 30,
+            format: 'MM/DD/YYYY h:mm A'
+        }, function (start, end) {
+            $('#started_at').val(start.format('YYYY-MM-DD HH:mm'));
+            $('#ended_at').val(end.format('YYYY-MM-DD HH:mm'));
+        });
     </script>
 @endpush
