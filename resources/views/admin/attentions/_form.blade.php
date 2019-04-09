@@ -54,7 +54,10 @@
         $('#dates').daterangepicker({
             timePicker: true,
             timePickerIncrement: 30,
-            format: 'MM/DD/YYYY h:mm A'
+            format: 'DD/MM/YYYY h:mm A',
+            locale: {
+                format: 'DD/MM/YYYY HH:mm',
+            },
         }, function (start, end) {
             $('#started_at').val(start.format('YYYY-MM-DD HH:mm'));
             $('#ended_at').val(end.format('YYYY-MM-DD HH:mm'));
