@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\AcceptHeader;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +13,11 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+$header = AcceptHeader::fromString(request()->headers->get('Accept'))
+    ->get('application/vnd.soglasie.api+json');
+$version = $header ? $header->getAttribute('version', 1) : 1;
+
+if ($version == 1) {
+    Route::namespace('V1')->group(function () {
+    });
+}
