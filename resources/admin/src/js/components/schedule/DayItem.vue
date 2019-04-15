@@ -7,7 +7,8 @@
             @change="setDay"></s-day>
         <s-time
             :time="item.time"
-            v-if="item.time">
+            v-if="item.time"
+            @changed="updateTime">
             <template v-slot:remove>
                 <i class="fa fa-times" @click="$emit('remove')"></i>
             </template>
@@ -65,6 +66,9 @@
             },
             setDay(val) {
                 this.item.days = val;
+            },
+            updateTime(time) {
+                this.item.time = time;
             }
         }
     }

@@ -1,7 +1,7 @@
 <template>
     <div class="row">
-        <s-week :days="item.days"></s-week>
-        <s-time :time="item.time">
+        <s-week :days="item.days" @changed="updateDays"></s-week>
+        <s-time :time="item.time" @changed="updateTime">
             <template v-slot:remove>
                 <i class="fa fa-times" @click="$emit('remove')"></i>
             </template>
@@ -32,6 +32,12 @@
             }
         },
         methods: {
+            updateDays(days) {
+                this.item.days = days;
+            },
+            updateTime(time) {
+                this.item.time = time;
+            }
         }
     }
 </script>
