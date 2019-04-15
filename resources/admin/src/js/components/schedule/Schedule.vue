@@ -1,5 +1,6 @@
 <template>
     <div class="row">
+        <input type="hidden" :name="name" :value="value">
         <slot name="header"></slot>
         <div class="col-sm-12">
             <component
@@ -39,6 +40,9 @@
         components: {
             WeekItem,
             DayItem,
+        },
+        props: {
+            officeType: String
         },
         mounted() {
         },
@@ -123,6 +127,13 @@
                 this.items.splice(index, 1);
             }
         },
-        computed: {}
+        computed: {
+            name() {
+                return `schedule[${this.officeType}]`;
+            },
+            value() {
+                return JSON.stringify(this.items);
+            }
+        }
     }
 </script>
