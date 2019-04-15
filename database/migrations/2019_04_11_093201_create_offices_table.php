@@ -20,13 +20,7 @@ class CreateOfficesTable extends Migration
             $table->text('address_note')->nullable();
             $table->string('lat');
             $table->string('lon');
-            $table->json('seo');
             $table->unsignedSmallInteger('sort');
-            $table->boolean('vip');
-            $table->boolean('main');
-            $table->boolean('master');
-            $table->boolean('card');
-            $table->boolean('delimobil');
             $table->timestamps();
         });
 
@@ -36,11 +30,19 @@ class CreateOfficesTable extends Migration
         });
 
         Schema::create('offices_types', function (Blueprint $table) {
+            $table->increments('id');
             $table->unsignedInteger('office_id');
             $table->unsignedTinyInteger('office_type_id');
+            $table->text('address_note')->nullable();
+            $table->json('seo');
             $table->json('schedule');
             $table->json('phones');
             $table->json('emails');
+            $table->boolean('vip')->default(false);
+            $table->boolean('main')->default(false);
+            $table->boolean('master')->default(false);
+            $table->boolean('card')->default(false);
+            $table->boolean('delimobil')->default(false);
 
             $table->foreign('office_id')
                 ->references('id')
