@@ -5,6 +5,8 @@ require('admin-lte/bower_components/fastclick/lib/fastclick');
 require('select2/dist/js/select2.full');
 require('icheck/icheck');
 require('daterangepicker');
+require('bootstrap-timepicker');
+require('bootstrap-datepicker');
 
 require('admin-lte');
 
