@@ -7,6 +7,10 @@ Route::get('login', 'LoginController@showLoginForm')->name('login');
 Route::post('login', 'LoginController@login');
 Route::post('logout', 'LoginController@logout')->name('logout');
 
+Route::get('csrf', function () {
+    return ["csrf" => csrf_token()];
+});
+
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('', function () {
         return redirect()->route('admin.dashboard');
@@ -22,6 +26,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('forms', 'FormController');
     Route::resource('applications', 'ApplicationController');
     Route::resource('attentions', 'AttentionController');
+    Route::get('offices/types', 'OfficeController@allTypes');
+    Route::resource('offices', 'OfficeController');
 
     if (env('APP_ENV') !== 'production') {
         Route::group(['prefix' => 'backups', 'as' => 'backups.'], function () {
