@@ -13,7 +13,7 @@ class CreateOfficesTable extends Migration
      */
     public function up()
     {
-        Schema::create('offices', function (Blueprint $table) {
+        Schema::create('office__offices', function (Blueprint $table) {
             $table->increments('id');
             $table->boolean('active');
             $table->text('address');
@@ -24,12 +24,12 @@ class CreateOfficesTable extends Migration
             $table->timestamps();
         });
 
-        Schema::create('office_types', function (Blueprint $table) {
+        Schema::create('office__types', function (Blueprint $table) {
             $table->tinyIncrements('id');
             $table->string('name');
         });
 
-        Schema::create('offices_types', function (Blueprint $table) {
+        Schema::create('office__offices_types', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('office_id');
             $table->unsignedTinyInteger('office_type_id');
@@ -46,12 +46,12 @@ class CreateOfficesTable extends Migration
 
             $table->foreign('office_id')
                 ->references('id')
-                ->on('offices')
+                ->on('office__offices')
                 ->onDelete('cascade');
 
             $table->foreign('office_type_id')
                 ->references('id')
-                ->on('office_types')
+                ->on('office__types')
                 ->onDelete('cascade');
         });
 
@@ -61,13 +61,13 @@ class CreateOfficesTable extends Migration
             $table->string('station');
         });
 
-        Schema::create('offices_subways', function (Blueprint $table) {
+        Schema::create('office__offices_subways', function (Blueprint $table) {
             $table->unsignedInteger('office_id');
             $table->unsignedSmallInteger('subway_id');
 
             $table->foreign('office_id')
                 ->references('id')
-                ->on('offices')
+                ->on('office__offices')
                 ->onDelete('cascade');
 
             $table->foreign('subway_id')
@@ -84,10 +84,10 @@ class CreateOfficesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('offices_subways');
+        Schema::dropIfExists('office__offices_subways');
         Schema::dropIfExists('subways');
-        Schema::dropIfExists('offices_types');
-        Schema::dropIfExists('office_types');
-        Schema::dropIfExists('offices');
+        Schema::dropIfExists('office__offices_types');
+        Schema::dropIfExists('office__office_types');
+        Schema::dropIfExists('office__offices');
     }
 }
