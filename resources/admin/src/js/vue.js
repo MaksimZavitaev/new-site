@@ -9,6 +9,7 @@ import Datepicker from './directives/datepicker'
 import VariableList from './components/variables/VariableList.vue'
 import BreadcrumbsList from './components/breadcrumbs/BreadcrumbsList.vue'
 import Schedule from './components/schedule/Schedule.vue'
+import Offices from './components/offices/Offices.vue'
 
 Vue.config.productionTip = false;
 
@@ -27,6 +28,7 @@ const app = new Vue({
         VariableList,
         BreadcrumbsList,
         Schedule,
+        Offices,
     }
 });
 

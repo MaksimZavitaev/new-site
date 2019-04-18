@@ -21,7 +21,9 @@ class OfficeController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.offices.index', [
+            'offices' => Office::all(),
+        ]);
     }
 
     public function allTypes()
@@ -41,7 +43,7 @@ class OfficeController extends Controller
      */
     public function create()
     {
-        return view('admin.offices.create', [
+        return view('admin.offices.item', [
             'office_types' => Type::all(),
         ]);
     }
@@ -83,19 +85,26 @@ class OfficeController extends Controller
      */
     public function show($id)
     {
-        //
+        $office = Office::with('types')->find($id);
+        $office->types->transform(function ($type) {
+            return $type->pivot->toArray();
+        });
+        return $office;
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param int $id
+     * @param Office $office
      *
      * @return Response
      */
-    public function edit($id)
+    public function edit(Office $office)
     {
-        //
+        return view('admin.offices.item', [
+            'office_types' => Type::all(),
+            'office_id' => $office->id,
+        ]);
     }
 
     /**
@@ -133,7 +142,7 @@ class OfficeController extends Controller
 
             $office->types()->sync($types);
         });
-        return $office->with('types')->get();
+        return Office::with('types')->find($office->id);
     }
 
     /**
@@ -141,13 +150,13 @@ class OfficeController extends Controller
      *
      * @param Office $office
      *
-     * @return void
+     * @return Office|\Illuminate\Http\RedirectResponse
      * @throws \Exception
      */
     public function destroy(Office $office)
     {
         $office->delete();
 
-        return $office;
+        return \request()->ajax() ? $office : redirect()->route('admin.offices.index');
     }
 }

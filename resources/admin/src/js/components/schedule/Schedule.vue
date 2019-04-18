@@ -1,6 +1,5 @@
 <template>
     <div class="row">
-        <input type="hidden" :name="name" :value="value">
         <slot name="header"></slot>
         <div class="col-sm-12">
             <component
@@ -42,67 +41,14 @@
             DayItem,
         },
         props: {
-            officeType: String
+            value: Array
         },
         mounted() {
+            this.items = this.value || [];
         },
         data() {
             return {
-                items: [
-                    {
-                        days: [0, 1, 2, 3, 4],
-                        time: {
-                            work: {
-                                start: '09:00',
-                                end: '18:00'
-                            },
-                            breaks: [
-                                {
-                                    start: '14:00',
-                                    end: '15:00'
-                                },
-                                {
-                                    start: '15:30',
-                                    end: '16:00'
-                                }
-                            ]
-                        }
-                    },
-                    {
-                        days: [5, 6],
-                        time: {
-                            work: {
-                                start: '10:00',
-                                end: '16:00'
-                            },
-                            breaks: [
-                                {
-                                    start: '13:00',
-                                    end: '14:00'
-                                }
-                            ]
-                        }
-                    },
-                    {
-                        days: '30.04.2019',
-                        time: {
-                            work: {
-                                start: '10:00',
-                                end: '16:00'
-                            },
-                            breaks: [
-                                {
-                                    start: '13:00',
-                                    end: '14:00'
-                                }
-                            ]
-                        }
-                    },
-                    {
-                        days: '01.05.2019',
-                        time: null
-                    },
-                ]
+                items: []
             }
         },
         methods: {
@@ -130,9 +76,14 @@
         computed: {
             name() {
                 return `schedule[${this.officeType}]`;
-            },
-            value() {
-                return JSON.stringify(this.items);
+            }
+        },
+        watch: {
+            items: {
+                handler(val) {
+                    this.$emit('input', val);
+                },
+                deep: true,
             }
         }
     }
