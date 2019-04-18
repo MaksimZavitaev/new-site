@@ -2,9 +2,9 @@
 
 namespace App\Models\Office;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class OfficeType extends Model
+class OfficeType extends Pivot
 {
     protected $table = 'office__offices_types';
 

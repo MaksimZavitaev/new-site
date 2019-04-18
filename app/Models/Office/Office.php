@@ -9,6 +9,11 @@ class Office extends Model
 {
     protected $table = 'office__offices';
 
+    protected $casts = [
+        'lat' => 'float',
+        'lon' => 'float',
+    ];
+
     protected $fillable = [
         'active',
         'address',
