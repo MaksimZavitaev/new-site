@@ -33,6 +33,7 @@ class CreateOfficesTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('office_id');
             $table->unsignedTinyInteger('office_type_id');
+            $table->string('slug')->nullable()->index();
             $table->text('address_note')->nullable();
             $table->json('seo');
             $table->json('schedule');
