@@ -83,7 +83,7 @@ class PageVariableController extends Controller
             $pageVariable = $pageVariable->first() ?? new PageVariable();
 
             $pageVariable->key = $items['key'];
-            $pageVariable->is_list = $items['is_list'];
+            $pageVariable->is_list = $items['is_list'] ?? false;
             $pageVariable->page_id = $page->id;
             $pageVariable->save();
 
