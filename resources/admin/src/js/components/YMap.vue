@@ -27,9 +27,7 @@
                 $vm.ymap.behaviors.disable('scrollZoom');
 
                 if ($vm.lat && $vm.lon) {
-                    const coords = [$vm.lat, $vm.lon];
-                    $vm.setPlacemark(coords);
-                    $vm.getAddress(coords);
+                    this.updateAddress();
                 }
 
                 // Слушаем клик на карте.
@@ -56,6 +54,21 @@
                 address: '',
                 ymap: null,
                 placemark: null,
+            }
+        },
+        watch: {
+            lat() {
+                if (this.ymap && this.lon)
+                    this.updateAddress();
+            },
+            lon() {
+                if (this.ymap && this.lat)
+                    this.updateAddress();
+            },
+        },
+        computed: {
+            coords() {
+                return [this.lat, this.lon];
             }
         },
         methods: {
@@ -107,6 +120,10 @@
                         alert('Ошибка');
                     });
             },
+            updateAddress() {
+                this.setPlacemark(this.coords);
+                this.getAddress(this.coords);
+            }
         }
     }
 </script>
