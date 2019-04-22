@@ -15,6 +15,9 @@ class SubwayController extends Controller
      */
     public function index()
     {
+        if(\request()->ajax())
+            return Subway::all();
+
         return view('admin.subways.index', [
             'subways' => Subway::all(),
             'lines' => collect(Subway::getSubwayLines()),
