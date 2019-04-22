@@ -28,6 +28,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('attentions', 'AttentionController');
     Route::get('offices/types', 'OfficeController@allTypes');
     Route::resource('offices', 'OfficeController');
+    Route::resource('subways', 'SubwayController');
 
     if (env('APP_ENV') !== 'production') {
         Route::group(['prefix' => 'backups', 'as' => 'backups.'], function () {

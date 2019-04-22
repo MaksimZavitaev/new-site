@@ -110,6 +110,29 @@
                             </li>
                         </ul>
                     </li>
+                    <li class="treeview {{ request()->route()->named('admin.offices.*') || request()->route()->named('admin.subways.*') ? 'active' : '' }}">
+                        <a href="#">
+                            <i class="fa fa-building"></i>
+                            <span>Офисы</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li class="{{ request()->route()->named('admin.offices.*') ? 'active' : '' }}">
+                                <a href="{{ route('admin.offices.index') }}">
+                                    <i class="fa fa-circle-o"></i>
+                                    Офисы
+                                </a>
+                            </li>
+                            <li class="{{ request()->route()->named('admin.subways.*') ? 'active' : '' }}">
+                                <a href="{{ route('admin.subways.index') }}">
+                                    <i class="fa fa-circle-o"></i>
+                                    Метро
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
                     @if (! app()->environment('production'))
                         <li class="{{ request()->route()->named('admin.backups.*') ? 'active' : '' }}">
                             <a href="{{ route('admin.backups.index') }}">

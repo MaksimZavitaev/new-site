@@ -67,3 +67,6 @@ Breadcrumbs::resource('admin.attentions', 'Уведомления');
 
 // Главная > Офисы
 Breadcrumbs::resource('admin.offices', 'Офисы');
+
+// Главная > Метро
+Breadcrumbs::resource('admin.subways', 'Метро');
