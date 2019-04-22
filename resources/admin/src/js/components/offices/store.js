@@ -4,6 +4,7 @@ import Axios from 'axios';
 const store = {
     debug: true,
     state: {
+        process: false,
         types: [],
         subways: [],
         office: {
@@ -71,8 +72,10 @@ const store = {
             this.state.subways = data;
         }
     },
-    submit() {
-        this.state.office.id ? this.update() : this.create();
+    async submit() {
+        this.state.process = true;
+        this.state.office.id ? await this.update() : await this.create();
+        this.state.process = false;
     },
     async create() {
         const office = {
