@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import Vue from 'vue';
 import Axios from 'axios';
 
 const store = {
@@ -79,7 +79,25 @@ const store = {
             ...this.state.office,
             types: this.state.office.types.filter(i => this.state.types.some(j => (i.type_id === j.id && j.status)))
         };
-        const {data} = await Axios.post('/admin/offices', office);
+        const {data} = await Axios.post('/admin/offices', office)
+            .then(res => {
+                Vue.notify({
+                    group: 'app',
+                    duration: 3000,
+                    type: 'success',
+                    text: 'Успешно!'
+                });
+
+                return res;
+            })
+            .catch(err => {
+                Vue.notify({
+                    group: 'app',
+                    duration: 3000,
+                    type: 'error',
+                    text: 'При выполнении операции произошла ошибка. Пожалуйста, повторите попытку.'
+                });
+            });
         if (data.id) {
             this.state.office.id = data.id;
             window.location.href = `/admin/offices/${data.id}/edit`;
@@ -91,7 +109,25 @@ const store = {
             ...this.state.office,
             types: this.state.office.types.filter(i => this.state.types.some(j => (i.type_id === j.id && j.status)))
         };
-        const {data} = await Axios.put(`/admin/offices/${this.state.office.id}`, office);
+        const {data} = await Axios.put(`/admin/offices/${this.state.office.id}`, office)
+            .then(res => {
+                Vue.notify({
+                    group: 'app',
+                    duration: 3000,
+                    type: 'success',
+                    text: 'Успешно!'
+                });
+
+                return res;
+            })
+            .catch(err => {
+                Vue.notify({
+                    group: 'app',
+                    duration: 3000,
+                    type: 'error',
+                    text: 'При выполнении операции произошла ошибка. Пожалуйста, повторите попытку.'
+                });
+            });
         return data;
     },
 };
