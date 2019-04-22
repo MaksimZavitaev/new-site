@@ -28,6 +28,7 @@
     <notifications group="app"></notifications>
 </div>
 
+<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
 <script src="{{ mix('js/app.js', 'admin') }}"></script>
 
 @stack('scripts')

@@ -12,7 +12,9 @@
     "devDependencies": {
         "admin-lte": "^2.4.8",
         "axios": "^0.18",
+        "bootstrap-datepicker": "^1.8.0",
         "bootstrap-sass": "^3.4.1",
+        "bootstrap-timepicker": "^0.5.2",
         "cross-env": "^5.1",
         "daterangepicker": "^3.0.3",
         "font-awesome": "^4.7.0",
