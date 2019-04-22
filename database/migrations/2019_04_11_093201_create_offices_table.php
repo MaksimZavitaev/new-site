@@ -57,7 +57,7 @@ class CreateOfficesTable extends Migration
 
         Schema::create('subways', function (Blueprint $table) {
             $table->smallIncrements('id');
-            $table->unsignedTinyInteger('line');
+            $table->string('line');
             $table->string('station');
         });
 

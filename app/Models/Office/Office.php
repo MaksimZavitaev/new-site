@@ -2,6 +2,7 @@
 
 namespace App\Models\Office;
 
+use App\Models\Subway;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 
@@ -51,5 +52,10 @@ class Office extends Model
         return $this
             ->belongsToMany(Type::class, OfficeType::class, 'office_id', 'office_type_id', 'id')
             ->withPivot(['id', 'seo', 'schedule', 'phones', 'emails', 'vip', 'main', 'master', 'card', 'delimobil']);
+    }
+
+    public function subways()
+    {
+        return $this->belongsToMany(Subway::class, 'office__offices_subways', 'office_id', 'subway_id', 'id');
     }
 }

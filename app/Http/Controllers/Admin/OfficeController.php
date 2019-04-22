@@ -65,6 +65,8 @@ class OfficeController extends Controller
             $office->fill($data);
             $office->save();
 
+            $office->subways()->sync($data['subways']);
+
             foreach ($data['types'] as $item) {
                 $officeType = OfficeType::findOrNew($item['id'] ?? null);
                 $officeType->fill($item);
@@ -85,9 +87,12 @@ class OfficeController extends Controller
      */
     public function show($id)
     {
-        $office = Office::with('types')->find($id);
+        $office = Office::with(['types', 'subways'])->find($id);
         $office->types->transform(function ($type) {
             return $type->pivot->toArray();
+        });
+        $office->subways->transform(function ($item) {
+            return $item->id;
         });
         return $office;
     }
@@ -123,6 +128,7 @@ class OfficeController extends Controller
         DB::transaction(function () use ($data, $office) {
             $types = [];
             $office->update($data);
+            $office->subways()->sync($data['subways']);
 
             foreach ($data['types'] as $item) {
                 $officeType = OfficeType::where('id', $item['id'] ?? null)

@@ -53,6 +53,8 @@
 
 
                             <div class="form-group">
+                                <label>Метро</label>
+                                <stations class="form-control" v-model="subways" :options="stations"></stations>
                             </div>
                         </div>
                     </div>
@@ -76,6 +78,7 @@
 
     import OfficeForm from './OfficesForm.vue';
     import Checkbox from '../Checkbox.vue';
+    import Stations from './Stations.vue';
     import YMap from '../YMap.vue';
 
     export default {
@@ -87,6 +90,7 @@
         components: {
             OfficeForm,
             Checkbox,
+            Stations,
             YMap,
         },
         async mounted() {
@@ -94,14 +98,16 @@
                 await store.loadOfficeById(this.id);
 
             await store.getTypes();
+            await store.getSubways();
             this.types = store.state.types;
+            this.stations = store.state.subways;
         },
         data() {
             return {
                 state: store.state,
                 active_tab: 0,
-                types: store.state.types,
-                metro: []
+                types: [],
+                stations: [],
             }
         },
         computed: {
@@ -120,12 +126,20 @@
                     return this.state.office.address_note
                 },
                 set(val) {
-                    return this.state.office.address_note = val
+                    this.state.office.address_note = val
                 },
             },
             office() {
                 return this.state.office
             },
+            subways: {
+                get() {
+                    return this.state.office.subways
+                },
+                set(val) {
+                    this.state.office.subways = val
+                },
+            }
         },
         methods: {
             setActiveTab(id) {

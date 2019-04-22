@@ -5,6 +5,7 @@ const store = {
     debug: true,
     state: {
         types: [],
+        subways: [],
         office: {
             id: null,
             active: false,
@@ -13,6 +14,7 @@ const store = {
             lat: null,
             lon: null,
             sort: 100,
+            subways: [],
             types: []
         }
     },
@@ -62,6 +64,12 @@ const store = {
             });
         }
         return this.state.types;
+    },
+    async getSubways() {
+        if (!this.state.subways.length) {
+            const {data} = await Axios.get('/admin/subways');
+            this.state.subways = data;
+        }
     },
     submit() {
         this.state.office.id ? this.update() : this.create();

@@ -20,7 +20,7 @@ $(function () {
     });
     
     //Initialize Select2 Elements
-    $('.select2').select2();
+    $('select.select2').select2();
 
     $('*[data-href]').on("click", function() {
         document.location = $(this).data('href');
