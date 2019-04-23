@@ -38,7 +38,7 @@
                             </div>
                             <div class="col-lg-5">
                                 <div class="input-group">
-                                    <input type="text" class="form-control" v-model="address">
+                                    <input type="text" class="form-control" v-model="address" @keyup.enter="setAddress">
 
                                     <span class="input-group-btn">
                                 <button type="button" class="btn btn-warning btn-flat"
@@ -126,8 +126,13 @@
                 return this.state.office.lon
             },
 
-            address() {
-                return this.state.office.address
+            address: {
+                get() {
+                    return this.state.office.address
+                },
+                set(val) {
+                    this.state.office.address = val;
+                }
             },
             address_note: {
                 get() {
