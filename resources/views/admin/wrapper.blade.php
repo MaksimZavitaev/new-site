@@ -65,6 +65,31 @@
                         </a>
                     </li>
                     @endhasrole
+                    @hasrole('administrator|writer')
+                    <li class="treeview {{ request()->route()->named('admin.promocodes.*') ? 'active' : '' }}">
+                        <a href="#">
+                            <i class="fa fa-ticket"></i>
+                            <span>Промокоды</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li class="{{ request()->route()->named('admin.promocodes.permanent.*') ? 'active' : '' }}">
+                                <a href="{{ route('admin.promocodes.permanent.index') }}">
+                                    <i class="fa fa-circle-o"></i>
+                                    Постоянные
+                                </a>
+                            </li>
+                            <li class="{{ request()->route()->named('admin.promocodes.temporary.*') ? 'active' : '' }}">
+                                <a href="{{ route('admin.promocodes.temporary.index') }}">
+                                    <i class="fa fa-circle-o"></i>
+                                    Временные
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    @endhasrole
                     @hasrole('administrator')
                     <li class="{{ request()->route()->named('admin.attentions.*') ? 'active' : '' }}">
                         <a href="{{ route('admin.attentions.index') }}">
@@ -157,6 +182,25 @@
 
             <!-- Main content -->
             <section class="content container-fluid">
+                <div class="col-md-12">
+                    @if ($message = Session::get('success'))
+                        <div class="alert alert-success alert-block">
+                            <button type="button" class="close" data-dismiss="alert">×</button>
+                            <strong>{{ $message }}</strong>
+                        </div>
+                    @endif
+
+                    @if ($errors->any())
+                        <div class="alert alert-danger alert-block">
+                            <button type="button" class="close" data-dismiss="alert">×</button>
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                </div>
                 @yield('content')
             </section>
             <!-- /.content -->
