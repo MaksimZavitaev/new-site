@@ -10,19 +10,19 @@ Breadcrumbs::macro('resource', function ($name, $title) {
     // Home > Blog > New
     Breadcrumbs::for("$name.create", function ($trail) use ($name) {
         $trail->parent("$name.index");
-        $trail->push('New', route("$name.create"));
+        $trail->push('Новый', route("$name.create"));
     });
 
     // Home > Blog > Post 123
     Breadcrumbs::for("$name.show", function ($trail, $model) use ($name) {
         $trail->parent("$name.index");
-        $trail->push($model->name ?? $model->id, route("$name.show", $model));
+        $trail->push($model->name ?? $model->id, route("$name.edit", $model));
     });
 
     // Home > Blog > Post 123 > Edit
     Breadcrumbs::for("$name.edit", function ($trail, $model) use ($name) {
         $trail->parent("$name.show", $model);
-        $trail->push('Edit', route("$name.edit", $model));
+        $trail->push('Редактировать', route("$name.edit", $model));
     });
 });
 
@@ -32,7 +32,7 @@ Breadcrumbs::macro('resource', function ($name, $title) {
 
 // Главная
 Breadcrumbs::for('admin.', function ($trail) {
-    $trail->push('Главная', route('admin.'));
+    $trail->push('Главная', route('admin.dashboard'));
 });
 
 // Главная > Панель управления
@@ -70,3 +70,9 @@ Breadcrumbs::resource('admin.offices', 'Офисы');
 
 // Главная > Метро
 Breadcrumbs::resource('admin.subways', 'Метро');
+
+// Главная > Постоянные промокоды
+Breadcrumbs::resource('admin.promocodes.permanent', 'Постоянные промокоды');
+
+// Главная > Временные промокоды
+Breadcrumbs::resource('admin.promocodes.temporary', 'Временные промокоды');
