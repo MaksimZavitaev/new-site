@@ -2,10 +2,10 @@
 
 namespace App\Providers;
 
-use Illuminate\Routing\Events\RouteMatched;
-use Illuminate\Support\Facades\Route;
+use App\Models\Promocode;
+use App\Models\TmpPromocode;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
-use Symfony\Component\HttpFoundation\AcceptHeader;
+use Illuminate\Support\Facades\Route;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -25,7 +25,13 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Route::bind('permanent', function ($value) {
+            return Promocode::findOrFail($value);
+        });
+
+        Route::bind('temporary', function ($value) {
+            return TmpPromocode::findOrFail($value);
+        });
 
         parent::boot();
     }
@@ -78,9 +84,9 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapAdminRoutes()
     {
         Route::prefix('admin')
-            ->middleware(['web'])
-            ->namespace($this->namespace . '\Admin')
-            ->as('admin.')
-            ->group(base_path('routes/admin.php'));
+             ->middleware(['web'])
+             ->namespace($this->namespace . '\Admin')
+             ->as('admin.')
+             ->group(base_path('routes/admin.php'));
     }
 }

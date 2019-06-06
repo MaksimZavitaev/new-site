@@ -29,6 +29,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('offices/types', 'OfficeController@allTypes');
     Route::resource('offices', 'OfficeController');
     Route::resource('subways', 'SubwayController');
+    Route::group(['prefix' => 'promocodes', 'as' => 'promocodes.'], function () {
+        Route::get('', function () {
+            return redirect()->route('admin.promocodes.permanent.index');
+        })->name('index');
+        Route::resource('permanent', 'PromocodeController');
+        Route::resource('temporary', 'TemporaryPromocodeController');
+    });
 
     if (env('APP_ENV') !== 'production') {
         Route::group(['prefix' => 'backups', 'as' => 'backups.'], function () {
